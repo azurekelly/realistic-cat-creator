@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import ColorPanel from './ColorPanel';
+import ColorPanel from './components/ColorPanel';
 
 const Container = styled.div`
     height: 100%;
@@ -7,7 +7,7 @@ const Container = styled.div`
 `;
 
 const SidePane = styled.div`
-    width: 30%;
+    width: 35%;
     height: 100%;
     overflow-y: auto;
     background-color: #fff;
