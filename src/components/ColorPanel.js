@@ -1,39 +1,28 @@
 import Slider from './Slider';
-import PresetButton from './PresetButton';
+import Button from './Button';
 
 const ColorPanel = () => {
+    const furColors = ['Black', 'Chocolate', 'Cinnamon', 'Red', 'Gray', 'Lilac', 'Fawn', 'Cream'];
+    const furSliders = ['Pigment intensity', 'Eumelanin color', 'Diluation'];
+    const eyeColors = ['Copper', 'Orange', 'Yellow', 'Hazel', 'Green', 'Aqua', 'Blue'];
+    const eyeSliders = ['Pigment intensity', 'Blue refraction'];
+    
     return (
         <>
             <section>
                 <h2>Fur color</h2>
-                <PresetButton value='Black' />
-                <PresetButton value='Chocolate' />
-                <PresetButton value='Cinnamon' />
-                <PresetButton value='Red' />
-                <PresetButton value='Gray' />
-                <PresetButton value='Lilac' />
-                <PresetButton value='Fawn' />
-                <PresetButton value='Cream' />
+                {furColors.map(color => <Button value={color} />)}
                 <section>
                     <h3>Advanced</h3>
-                    <Slider label='Pigment intensity' />
-                    <Slider label='Eumelanin color' />
-                    <Slider label='Dilution' />
+                    {furSliders.map(label => <Slider label={label} />)}
                 </section>
             </section>
             <section>
                 <h2>Eye color</h2>
-                <PresetButton value='Copper' />
-                <PresetButton value='Orange' />
-                <PresetButton value='Yellow' />
-                <PresetButton value='Hazel' />
-                <PresetButton value='Green' />
-                <PresetButton value='Aqua' />
-                <PresetButton value='Blue' />
+                {eyeColors.map(color => <Button value={color} />)}
                 <section>
                     <h3>Advanced</h3>
-                    <Slider label='Pigment intensity' />
-                    <Slider label='Blue refraction' />
+                    {eyeSliders.map(label => <Slider label={label} />)}
                 </section>
             </section>
         </>
