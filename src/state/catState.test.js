@@ -1,5 +1,5 @@
 import {createStore, combineReducers} from 'redux';
-import {catReducer, updateCat, catSelector} from './catState';
+import catReducer, {updateCat, catSelector} from './catState';
 
 describe('catState', () => {
     const createMockStore = (defaultState = {}) => {
