@@ -12,7 +12,7 @@ export const updateCat = traits => ({
 export const catSelector = state => state.cat;
 
 // REDUCERS
-export const catReducer = (state = {}, action) => {
+const catReducer = (state = {}, action) => {
     switch(action.type) {
         case UPDATE_CAT:
             return {...state, ...action.payload}
@@ -20,3 +20,4 @@ export const catReducer = (state = {}, action) => {
             return state;
     }
 };
+export default catReducer;
