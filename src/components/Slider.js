@@ -4,7 +4,7 @@ const StyledContainer = styled.div`
     padding-bottom: 1em;
 `;
 
-const StyledSlider = styled.input`
+const StyledSlider = styled.input.attrs({type: 'range'})`
     display: block;
     width: 100%;
 `;
@@ -16,7 +16,7 @@ const Slider = ({label, ...props}) => {
     return (<StyledContainer>
         <label>
             <StyledLabel>{label}</StyledLabel>
-            <StyledSlider type="range" {...props}></StyledSlider>
+            <StyledSlider {...props} />
         </label>
     </StyledContainer>);
 };
