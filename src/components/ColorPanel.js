@@ -1,6 +1,7 @@
 import FurColorSection from './FurColorSection';
 import Slider from './Slider';
 import Button from './Button';
+import AdvancedSection from './AdvancedSection';
 
 const ColorPanel = () => {
     const eyeColors = ['Copper', 'Orange', 'Yellow', 'Hazel', 'Green', 'Aqua', 'Blue'];
@@ -12,10 +13,9 @@ const ColorPanel = () => {
             <section>
                 <h2>Eye color</h2>
                 {eyeColors.map(color => <Button value={color} />)}
-                <section>
-                    <h3>Advanced</h3>
-                    {eyeSliders.map(label => <Slider label={label} />)}
-                </section>
+                <AdvancedSection collapsed={false}>
+                    {eyeSliders.map(label => <Slider label={label} min={0} max={32} defaultValue={16} />)}
+                </AdvancedSection>
             </section>
         </>
     );

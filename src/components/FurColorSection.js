@@ -1,5 +1,6 @@
 import Button from './Button';
 import Slider from './Slider';
+import AdvancedSection from './AdvancedSection';
 
 const colors = ['Black', 'Chocolate', 'Cinnamon', 'Red', 'Gray', 'Lilac', 'Fawn', 'Cream'];
 const sliders = [
@@ -12,10 +13,9 @@ const FurColorSection = () => {
     return (<section>
         <h2>Fur color</h2>
         {colors.map(color => <Button value={color} key={color} />)}
-        <h3>Advanced</h3>
-        <section>
+        <AdvancedSection collapsed={false}>
             {sliders.map(({label, min, max, start}) => <Slider label={label} min={min} max={max} step={1} defaultValue={start} key={label} />)}
-        </section>
+        </AdvancedSection>
     </section>)
 };
 
