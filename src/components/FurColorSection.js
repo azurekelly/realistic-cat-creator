@@ -13,7 +13,7 @@ const FurColorSection = () => {
     return (<section>
         <h2>Fur color</h2>
         {colors.map(color => <Button value={color} key={color} />)}
-        <AdvancedSection collapsed={false}>
+        <AdvancedSection>
             {sliders.map(({label, min, max, start}) => <Slider label={label} min={min} max={max} step={1} defaultValue={start} key={label} />)}
         </AdvancedSection>
     </section>)
