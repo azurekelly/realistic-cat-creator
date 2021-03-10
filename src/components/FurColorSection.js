@@ -1,22 +1,22 @@
-import Button from './Button';
-import Slider from './Slider';
-import AdvancedSection from './AdvancedSection';
+import Section from './Section';
 
-const colors = ['Black', 'Chocolate', 'Cinnamon', 'Red', 'Gray', 'Lilac', 'Fawn', 'Cream'];
+const buttons = [
+    {label: 'Black'}, 
+    {label: 'Chocolate'}, 
+    {label: 'Cinnamon'}, 
+    {label: 'Red'}, 
+    {label: 'Gray'}, 
+    {label: 'Lilac'}, 
+    {label: 'Fawn'}, 
+    {label: 'Cream'}];
 const sliders = [
-    {label: 'Pigment intensity', min: 0, max: 16, start: 8}, 
-    {label: 'Eumelanin color', min: 0, max: 16, start: 8}, 
-    {label: 'Dilution', min: 0, max: 16, start: 8}
+    {label: 'Pigment intensity'}, 
+    {label: 'Eumelanin color'}, 
+    {label: 'Dilution'}
 ];
 
-const FurColorSection = () => {
-    return (<section>
-        <h2>Fur color</h2>
-        {colors.map(color => <Button value={color} key={color} />)}
-        <AdvancedSection>
-            {sliders.map(({label, min, max, start}) => <Slider label={label} min={min} max={max} step={1} defaultValue={start} key={label} />)}
-        </AdvancedSection>
-    </section>)
-};
+const FurColorSection = () => (
+    <Section title={'Fur color'} buttons={buttons} sliders={sliders} />
+);
 
 export default FurColorSection;
