@@ -1,4 +1,4 @@
-import FurColorSection from './FurColorSection';
+import FurColorSection from '../FurColorSection';
 import {render, screen, fireEvent} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom/extend-expect'
@@ -15,7 +15,7 @@ describe('FurColorSection component', () => {
 
     it('contains correct buttons', () => {
         render(<FurColorSection />);
-        buttons.forEach(button => {
+        buttons.forEach(button => { 
             // getByRole was being too slow for looping, jest sometimes timed out
             expect(screen.getByText(button)).toBeInTheDocument();
         })

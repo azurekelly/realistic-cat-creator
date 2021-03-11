@@ -1,4 +1,4 @@
-import Slider from './Slider';
+import Slider from '../Slider';
 import {render, screen, fireEvent} from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect'
 
