@@ -1,5 +1,5 @@
 import FurColorSection from '../FurColorSection';
-import {render, screen, fireEvent} from '@testing-library/react';
+import {render, screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom/extend-expect'
 
@@ -7,6 +7,7 @@ const buttons = ['Black', 'Chocolate', 'Cinnamon', 'Red', 'Gray', 'Lilac', 'Fawn
 const sliders = ['Pigment intensity', 'Eumelanin color', 'Dilution'];
 
 // TODO add in tests related to disabling sliders based on current state
+// TODO add tests for changing state on button or slider event
 describe('FurColorSection component', () => {
     it('has section heading', () => {
         render(<FurColorSection />);
@@ -21,27 +22,17 @@ describe('FurColorSection component', () => {
         })
     });
 
-    it.todo('updates state on button click'); // each
-
     it('has an advanced section', () => {
         render(<FurColorSection />);
         expect(screen.getByText('Advanced')).toBeInTheDocument();
     })
 
-    it('displays sliders when advanced section is expanded', () => {
-        render(<FurColorSection />);
-        userEvent.click(screen.getByRole('button', {name: 'Advanced'}));
-        expect(screen.queryAllByRole('slider').length).toBe(3);
-    });
-
-    it('contains correct sliders', () => {
+    it('displays correct sliders when advanced section is expanded', () => {
         render(<FurColorSection />);
         userEvent.click(screen.getByRole('button', {name: 'Advanced'}));
         sliders.forEach(slider => {
             // getByRole was being too slow for looping, jest sometimes timed out
-            expect(screen.getByText(slider)).toBeInTheDocument();
+            expect(screen.getByLabelText(slider)).toBeInTheDocument();
         })
     });
-
-    it.todo('updates state on slider change'); // each
 });

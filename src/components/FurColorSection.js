@@ -8,7 +8,9 @@ const buttons = [
     {label: 'Gray'}, 
     {label: 'Lilac'}, 
     {label: 'Fawn'}, 
-    {label: 'Cream'}];
+    {label: 'Cream'}
+]
+;
 const sliders = [
     {label: 'Pigment intensity'}, 
     {label: 'Eumelanin color'}, 
