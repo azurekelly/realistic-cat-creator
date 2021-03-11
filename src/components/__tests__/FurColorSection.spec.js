@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom/extend-expect'
 
 const buttons = ['Black', 'Chocolate', 'Cinnamon', 'Red', 'Gray', 'Lilac', 'Fawn', 'Cream'];
-const sliders = ['Pigment intensity', 'Eumelanin color', 'Dilution'];
+const sliders = ['Redness', 'Dilution'];
 
 // TODO add in tests related to disabling sliders based on current state
 // TODO add tests for changing state on button or slider event

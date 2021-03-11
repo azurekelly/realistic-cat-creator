@@ -12,8 +12,7 @@ const buttons = [
 ]
 ;
 const sliders = [
-    {label: 'Pigment intensity'}, 
-    {label: 'Eumelanin color'}, 
+    {label: 'Redness'},
     {label: 'Dilution'}
 ];
 
