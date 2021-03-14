@@ -40,6 +40,7 @@
     ]
   },
   "devDependencies": {
-    "eslint-config-personal": "github:azurekelly/eslint-config-personal"
+    "eslint-config-personal": "github:azurekelly/eslint-config-personal",
+    "eslint-plugin-jest": "^24.3.1"
   }
 }
