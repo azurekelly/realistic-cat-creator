@@ -12,13 +12,13 @@ const StyledLabel = styled.span`
     display: block;
 `;
 
-const Slider = ({label, ...props}) => {
-    return (<StyledContainer>
+const Slider = ({label, ...props}) => (
+    <StyledContainer>
         <label>
             <StyledLabel>{label}</StyledLabel>
             <StyledSlider {...props} />
         </label>
-    </StyledContainer>);
-};
+    </StyledContainer>
+);
 
 export default Slider;

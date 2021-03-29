@@ -17,7 +17,7 @@ const AdvancedSection = ({collapsed = true, children}) => {
             <CollapseButton onClick={handleClick}>Advanced</CollapseButton>
             {!collapsedState && children}
         </section>
-    )
+    );
 };
 
 export default AdvancedSection;

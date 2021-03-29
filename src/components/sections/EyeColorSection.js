@@ -1,4 +1,4 @@
-import Section from './Section';
+import Section from '../Section';
 
 const buttons = [
     {label: 'Copper'},
@@ -8,12 +8,12 @@ const buttons = [
     {label: 'Green'},
     {label: 'Aqua'},
     {label: 'Blue'}
-]
+];
 
 const sliders = [
     {label: 'Pigment intensity'},
     {label: 'Blue refraction'}
-]
+];
 
 const EyeColorSection = () => (
     <Section title='Eye color' buttons={buttons} sliders={sliders} />

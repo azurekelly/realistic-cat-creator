@@ -1,7 +1,7 @@
 import Section from '../Section';
 import {render, screen, fireEvent} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import '@testing-library/jest-dom/extend-expect'
+import '@testing-library/jest-dom/extend-expect';
 
 describe('Section component', () => {
     it('has section heading specified by props', () => {
@@ -80,4 +80,4 @@ describe('Section component', () => {
         fireEvent.change(screen.getByRole('slider', {name: 'Slider test'}), {target: {value: 0}});
         expect(handleChange).toHaveBeenCalled();
     });
-})
+});

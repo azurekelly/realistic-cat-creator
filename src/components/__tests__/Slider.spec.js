@@ -1,14 +1,14 @@
 import Slider from '../Slider';
 import {render, screen, fireEvent} from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect'
+import '@testing-library/jest-dom/extend-expect';
 
 describe('Slider component', () => {
     it('contains slider element', () => {
-       render(<Slider />);
-       expect(screen.getByRole('slider')).toBeInTheDocument(); 
+        render(<Slider />);
+        expect(screen.getByRole('slider')).toBeInTheDocument();
     });
-    it('contains label specified by props',() => {
-        render(<Slider label="Slider label" />);
+    it('contains label specified by props', () => {
+        render(<Slider label='Slider label' />);
         expect(screen.getByRole('slider', {name: 'Slider label'})).toBeInTheDocument();
     });
     it('calls function when slider is changed', () => {

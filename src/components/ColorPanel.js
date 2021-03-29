@@ -1,5 +1,5 @@
-import FurColorSection from './FurColorSection';
-import EyeColorSection from './EyeColorSection';
+import FurColorSection from './sections/FurColorSection';
+import EyeColorSection from './sections/EyeColorSection';
 
 const ColorPanel = () => (
     <>

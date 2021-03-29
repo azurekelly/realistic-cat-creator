@@ -1,7 +1,7 @@
 import AdvancedSection from '../AdvancedSection';
 import {render, screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import '@testing-library/jest-dom/extend-expect'
+import '@testing-library/jest-dom/extend-expect';
 
 describe('AdvancedSection component', () => {
     it('has button/link for collapsing', () => {
@@ -30,7 +30,7 @@ describe('AdvancedSection component', () => {
         userEvent.click(screen.getByRole('button', {name: /advanced/i}));
         expect(screen.getByTestId('child')).toBeInTheDocument();
     });
-    
+
     it('hides children when clicked if uncollapsed', () => {
         render(<AdvancedSection collapsed={false}><div data-testid='child'>Child element</div></AdvancedSection>);
         expect(screen.getByTestId('child')).toBeInTheDocument();

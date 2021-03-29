@@ -1,6 +1,6 @@
 import {useDispatch} from 'react-redux';
-import Section from './Section';
-import {updateCat} from '../state/catState';
+import Section from '../Section';
+import {updateCat} from '../../state/catState';
 
 const FurColorSection = () => {
     const dispatch = useDispatch();
