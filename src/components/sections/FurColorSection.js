@@ -6,14 +6,15 @@ const FurColorSection = () => {
     const dispatch = useDispatch();
 
     const buttons = [
-        {label: 'Black', onClick: () => dispatch(updateCat({baseColor: 'black', dilute: false}))},
-        {label: 'Chocolate', onClick: () => dispatch(updateCat({baseColor: 'chocolate', dilute: false}))},
-        {label: 'Cinnamon', onClick: () => dispatch(updateCat({baseColor: 'cinnamon', dilute: false}))},
-        {label: 'Red', onClick: () => dispatch(updateCat({baseColor: 'red', dilute: false}))},
-        {label: 'Gray', onClick: () => dispatch(updateCat({baseColor: 'black', dilute: true}))},
-        {label: 'Lilac', onClick: () => dispatch(updateCat({baseColor: 'chocolate', dilute: true}))},
-        {label: 'Fawn', onClick: () => dispatch(updateCat({baseColor: 'cinnamon', dilute: true}))},
-        {label: 'Cream', onClick: () => dispatch(updateCat({baseColor: 'red', dilute: true}))}
+        {label: 'Black', onClick: () => dispatch(updateCat({baseColor: 'black', dilute: false, fullWhite: false}))},
+        {label: 'Chocolate', onClick: () => dispatch(updateCat({baseColor: 'chocolate', dilute: false, fullWhite: false}))},
+        {label: 'Cinnamon', onClick: () => dispatch(updateCat({baseColor: 'cinnamon', dilute: false, fullWhite: false}))},
+        {label: 'Red', onClick: () => dispatch(updateCat({baseColor: 'red', dilute: false, fullWhite: false}))},
+        {label: 'Gray', onClick: () => dispatch(updateCat({baseColor: 'black', dilute: true, fullWhite: false}))},
+        {label: 'Lilac', onClick: () => dispatch(updateCat({baseColor: 'chocolate', dilute: true, fullWhite: false}))},
+        {label: 'Fawn', onClick: () => dispatch(updateCat({baseColor: 'cinnamon', dilute: true, fullWhite: false}))},
+        {label: 'Cream', onClick: () => dispatch(updateCat({baseColor: 'red', dilute: true, fullWhite: false}))},
+        {label: 'White', onClick: () => dispatch(updateCat({fullWhite: true}))}
     ]
     ;
     const sliders = [

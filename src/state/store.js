@@ -6,6 +6,7 @@ const initialState = {
     cat: {
         baseColor: 'black',
         dilute: false,
+        fullWhite: false,
         redness: 8, // visible on red-based cats, torties, and non-red tabbies
         dilution: 8, // only visible on dilutes
         baseMarking: 'solid', // can be solid, tabby, tortie, or torbie

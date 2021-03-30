@@ -8,14 +8,15 @@ import reducer from '../../../state/rootReducer';
 import {catSelector} from '../../../state/catState';
 
 const buttons = [
-    ['Black', 'black', false],
-    ['Chocolate', 'chocolate', false],
-    ['Cinnamon', 'cinnamon', false],
-    ['Red', 'red', false],
-    ['Gray', 'black', true],
-    ['Lilac', 'chocolate', true],
-    ['Fawn', 'cinnamon', true],
-    ['Cream', 'red', true]
+    ['Black', {baseColor: 'black', dilute: false, fullWhite: false}],
+    ['Chocolate', {baseColor: 'chocolate', dilute: false, fullWhite: false}],
+    ['Cinnamon', {baseColor: 'cinnamon', dilute: false, fullWhite: false}],
+    ['Red', {baseColor: 'red', dilute: false, fullWhite: false}],
+    ['Gray', {baseColor: 'black', dilute: true, fullWhite: false}],
+    ['Lilac', {baseColor: 'chocolate', dilute: true, fullWhite: false}],
+    ['Fawn', {baseColor: 'cinnamon', dilute: true, fullWhite: false}],
+    ['Cream', {baseColor: 'red', dilute: true, fullWhite: false}],
+    ['White', {fullWhite: true}]
 ];
 const sliders = [
     ['Redness', state => catSelector(state).redness],
@@ -43,10 +44,10 @@ describe('FurColorSection component', () => {
         });
     });
 
-    it.each(buttons)('updates state when %s button clicked', (buttonName, expectedColor, expectedDilute) => {
-        const {store} = renderComponent({cat: {baseColor: '', dilution: null}});
+    it.each(buttons)('updates state when %s button clicked', (buttonName, expectedState) => {
+        const {store} = renderComponent({cat: {baseColor: '', dilution: null, fullWhite: null}});
         userEvent.click(screen.getByRole('button', {name: buttonName}));
-        expect(catSelector(store.getState())).toMatchObject({baseColor: expectedColor, dilute: expectedDilute});
+        expect(catSelector(store.getState())).toMatchObject(expectedState);
     });
 
     it('has an advanced section', () => {
