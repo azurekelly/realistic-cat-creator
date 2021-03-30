@@ -4,18 +4,18 @@ import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom/extend-expect';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
-import reducer from '../../state/rootReducer';
-import {catSelector} from '../../state/catState';
+import reducer from '../../../state/rootReducer';
+import {catSelector} from '../../../state/catState';
 
 const buttons = [
-    ['Black', state => catSelector(state).baseColor, 'black'],
-    ['Chocolate', state => catSelector(state).baseColor, 'chocolate'],
-    ['Cinnamon', state => catSelector(state).baseColor, 'cinnamon'],
-    ['Red', state => catSelector(state).baseColor, 'red'],
-    ['Gray', state => catSelector(state).baseColor, 'gray'],
-    ['Lilac', state => catSelector(state).baseColor, 'lilac'],
-    ['Fawn', state => catSelector(state).baseColor, 'fawn'],
-    ['Cream', state => catSelector(state).baseColor, 'cream']
+    ['Black', 'black', false],
+    ['Chocolate', 'chocolate', false],
+    ['Cinnamon', 'cinnamon', false],
+    ['Red', 'red', false],
+    ['Gray', 'black', true],
+    ['Lilac', 'chocolate', true],
+    ['Fawn', 'cinnamon', true],
+    ['Cream', 'red', true]
 ];
 const sliders = [
     ['Redness', state => catSelector(state).redness],
@@ -43,10 +43,10 @@ describe('FurColorSection component', () => {
         });
     });
 
-    it.each(buttons)('updates state when %s button clicked', (button, targetState, expected) => {
-        const {store} = renderComponent({cat: {baseColor: ''}});
-        userEvent.click(screen.getByRole('button', {name: button}));
-        expect(targetState(store.getState())).toBe(expected);
+    it.each(buttons)('updates state when %s button clicked', (buttonName, expectedColor, expectedDilute) => {
+        const {store} = renderComponent({cat: {baseColor: '', dilution: null}});
+        userEvent.click(screen.getByRole('button', {name: buttonName}));
+        expect(catSelector(store.getState())).toMatchObject({baseColor: expectedColor, dilute: expectedDilute});
     });
 
     it('has an advanced section', () => {
@@ -67,6 +67,6 @@ describe('FurColorSection component', () => {
         const {store} = renderComponent({cat: {redness: 8, dilution: 8}});
         userEvent.click(screen.getByRole('button', {name: 'Advanced'}));
         fireEvent.change(screen.getByRole('slider', {name: slider}), {target: {value: 1}});
-        expect(targetState(store.getState())).toBe('1');
+        expect(targetState(store.getState())).toBe(1);
     });
 });

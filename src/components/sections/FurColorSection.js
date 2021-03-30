@@ -6,19 +6,19 @@ const FurColorSection = () => {
     const dispatch = useDispatch();
 
     const buttons = [
-        {label: 'Black', onClick: () => dispatch(updateCat({baseColor: 'black'}))},
-        {label: 'Chocolate', onClick: () => dispatch(updateCat({baseColor: 'chocolate'}))},
-        {label: 'Cinnamon', onClick: () => dispatch(updateCat({baseColor: 'cinnamon'}))},
-        {label: 'Red', onClick: () => dispatch(updateCat({baseColor: 'red'}))},
-        {label: 'Gray', onClick: () => dispatch(updateCat({baseColor: 'gray'}))},
-        {label: 'Lilac', onClick: () => dispatch(updateCat({baseColor: 'lilac'}))},
-        {label: 'Fawn', onClick: () => dispatch(updateCat({baseColor: 'fawn'}))},
-        {label: 'Cream', onClick: () => dispatch(updateCat({baseColor: 'cream'}))}
+        {label: 'Black', onClick: () => dispatch(updateCat({baseColor: 'black', dilute: false}))},
+        {label: 'Chocolate', onClick: () => dispatch(updateCat({baseColor: 'chocolate', dilute: false}))},
+        {label: 'Cinnamon', onClick: () => dispatch(updateCat({baseColor: 'cinnamon', dilute: false}))},
+        {label: 'Red', onClick: () => dispatch(updateCat({baseColor: 'red', dilute: false}))},
+        {label: 'Gray', onClick: () => dispatch(updateCat({baseColor: 'black', dilute: true}))},
+        {label: 'Lilac', onClick: () => dispatch(updateCat({baseColor: 'chocolate', dilute: true}))},
+        {label: 'Fawn', onClick: () => dispatch(updateCat({baseColor: 'cinnamon', dilute: true}))},
+        {label: 'Cream', onClick: () => dispatch(updateCat({baseColor: 'red', dilute: true}))}
     ]
     ;
     const sliders = [
-        {label: 'Redness', onChange: ({target: {value}}) => dispatch(updateCat({redness: value}))},
-        {label: 'Dilution', onChange: ({target: {value}}) => dispatch(updateCat({dilution: value}))}
+        {label: 'Redness', onChange: ({target: {value}}) => dispatch(updateCat({redness: Number(value)}))},
+        {label: 'Dilution', onChange: ({target: {value}}) => dispatch(updateCat({dilution: Number(value)}))}
     ];
 
     return <Section title={'Fur color'} buttons={buttons} sliders={sliders} />;
