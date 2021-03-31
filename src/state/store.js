@@ -13,7 +13,7 @@ const initialState = {
         tortie: false,
         pattern: 'mackerel', // only visible on non-solids, can be many options
         patternContrast: 8,
-        silver: 'standard',
+        silver: false,
         whiteSpread: 0,
         point: 'standard',
         eyePigment: 8,
