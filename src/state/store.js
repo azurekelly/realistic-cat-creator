@@ -9,7 +9,8 @@ const initialState = {
         fullWhite: false,
         redness: 8, // visible on red-based cats, torties, and non-red tabbies
         dilution: 8, // only visible on dilutes
-        baseMarking: 'solid', // can be solid, tabby, tortie, or torbie
+        tabby: false,
+        tortie: false,
         pattern: 'mackerel', // only visible on non-solids, can be many options
         patternContrast: 8,
         silver: 'standard',
