@@ -9,7 +9,7 @@ const sliders = ['Pigment intensity', 'Blue refraction'];
 // TODO test for disabling aqua and blue based on pattern state
 // TODO test for correct state changes on button or slider change
 describe('EyeColorSection component', () => {
-    it('has correct section title', () => {
+    it('has section heading', () => {
         render(<EyeColorSection />);
         expect(screen.getByText('Eye color')).toBeInTheDocument();
     });
@@ -19,12 +19,6 @@ describe('EyeColorSection component', () => {
         buttons.forEach(button => {
             expect(screen.getByText(button)).toBeInTheDocument();
         });
-    });
-
-    it('has an advanced section that is collapsed by default', () => {
-        render(<EyeColorSection />);
-        expect(screen.getByText('Advanced')).toBeInTheDocument();
-        expect(screen.queryByRole('slider')).not.toBeInTheDocument();
     });
 
     it('displays correct sliders when advanced section is expanded', () => {

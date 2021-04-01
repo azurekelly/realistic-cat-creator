@@ -36,35 +36,13 @@ describe('FurColorSection component', () => {
         expect(screen.getByText('Fur color')).toBeInTheDocument();
     });
 
-    it('contains correct buttons', () => {
-        renderComponent();
-        buttons.forEach(button => {
-            // getByRole was being too slow for looping, jest sometimes timed out
-            expect(screen.getByText(button[0])).toBeInTheDocument();
-        });
-    });
-
-    it.each(buttons)('updates state when %s button clicked', (buttonName, expectedState) => {
+    it.each(buttons)('has functioning %s button', (buttonName, expectedState) => {
         const {store} = renderComponent({cat: {baseColor: '', dilution: null, fullWhite: null}});
         userEvent.click(screen.getByRole('button', {name: buttonName}));
         expect(catSelector(store.getState())).toMatchObject(expectedState);
     });
 
-    it('has an advanced section', () => {
-        renderComponent();
-        expect(screen.getByText('Advanced')).toBeInTheDocument();
-    });
-
-    it('displays correct sliders when advanced section is expanded', () => {
-        renderComponent();
-        userEvent.click(screen.getByRole('button', {name: 'Advanced'}));
-        sliders.forEach(([slider]) => {
-            // getByRole was being too slow for looping, jest sometimes timed out
-            expect(screen.getByLabelText(slider)).toBeInTheDocument();
-        });
-    });
-
-    it.each(sliders)('updates state when %s slider is changed', (slider, targetState) => {
+    it.each(sliders)('has functioning %s slider', (slider, targetState) => {
         const {store} = renderComponent({cat: {redness: 8, dilution: 8}});
         userEvent.click(screen.getByRole('button', {name: 'Advanced'}));
         fireEvent.change(screen.getByRole('slider', {name: slider}), {target: {value: 1}});
