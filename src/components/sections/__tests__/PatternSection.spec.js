@@ -20,7 +20,6 @@ const buttons = [
     ['Ticked', {pattern: 'ticked'}],
     ['Rosette', {pattern: 'rosette'}],
     ['Marble', {pattern: 'marble'}],
-    ['Smoke', {pattern: 'smoke'}],
     ['Shaded', {pattern: 'shaded'}],
     ['Tipped', {pattern: 'tipped'}]
 ];
@@ -35,12 +34,5 @@ describe('PatternSection component', () => {
         const {store} = renderComponent({cat: {pattern: null}});
         userEvent.click(screen.getByRole('button', {name: buttonName}));
         expect(store.getState().cat).toMatchObject(expectedState);
-    });
-
-    it('has functioning pattern spread slider', () => {
-        const {store} = renderComponent({cat: {patternSpread: 8}});
-        userEvent.click(screen.getByRole('button', {name: 'Advanced'}));
-        fireEvent.change(screen.getByRole('slider', {name: 'Spread'}), {target: {value: 1}});
-        expect(store.getState().cat.patternSpread).toBe(1);
     });
 });

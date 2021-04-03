@@ -16,7 +16,6 @@ const initialState = {
         silver: false,
         whiteSpread: 0,
         point: 'standard',
-        pointTemp: 8,
         eyePigment: 8,
         blueRefraction: 8,
         eyeColorBase: 'standard' // can be standard, aqua, or blue

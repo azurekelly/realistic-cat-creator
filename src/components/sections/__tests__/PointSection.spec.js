@@ -30,11 +30,4 @@ describe('PointSection component', () => {
         userEvent.click(screen.getByRole('button', {name: buttonName}));
         expect(store.getState().cat).toMatchObject(expectedState);
     });
-
-    it('has functioning temperature slider', () => {
-        const {store} = renderComponent({cat: {pointTemp: 8}});
-        userEvent.click(screen.getByRole('button', {name: 'Advanced'}));
-        fireEvent.change(screen.getByRole('slider', {name: 'Temperature'}), {target: {value: 1}});
-        expect(store.getState().cat.pointTemp).toBe(1);
-    });
 });

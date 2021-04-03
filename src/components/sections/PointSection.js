@@ -10,11 +10,8 @@ const PointSection = () => {
         {label: 'Mink', onClick: () => dispatch(updateCat({point: 'mink'}))},
         {label: 'Sepia', onClick: () => dispatch(updateCat({point: 'sepia'}))}
     ];
-    const sliders = [
-        {label: 'Temperature', onChange: ({target: {value}}) => dispatch(updateCat({pointTemp: Number(value)}))}
-    ];
 
-    return <Section title='Colorpoint' buttons={buttons} sliders={sliders} />;
+    return <Section title='Colorpoint' buttons={buttons} />;
 };
 
 export default PointSection;
