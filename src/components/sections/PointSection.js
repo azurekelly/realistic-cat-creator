@@ -1,9 +1,10 @@
-import {useDispatch} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import Section from '../Section';
-import {updateCat} from '../../state/catState';
+import {catSelector, updateCat} from '../../state/catState';
 
 const PointSection = () => {
     const dispatch = useDispatch();
+    const cat = useSelector(catSelector);
     const buttons = [
         {label: 'Standard', onClick: () => dispatch(updateCat({point: 'standard'}))},
         {label: 'Point', onClick: () => dispatch(updateCat({point: 'point'}))},
@@ -11,7 +12,7 @@ const PointSection = () => {
         {label: 'Sepia', onClick: () => dispatch(updateCat({point: 'sepia'}))}
     ];
 
-    return <Section title='Colorpoint' buttons={buttons} />;
+    return <Section title='Colorpoint' buttons={buttons} disabled={cat.fullWhite} />;
 };
 
 export default PointSection;

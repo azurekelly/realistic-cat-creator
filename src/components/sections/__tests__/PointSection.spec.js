@@ -30,4 +30,18 @@ describe('PointSection component', () => {
         userEvent.click(screen.getByRole('button', {name: buttonName}));
         expect(store.getState().cat).toMatchObject(expectedState);
     });
+
+    it('enables all buttons for non-white cat', () => {
+        renderComponent({cat: {fullWhite: false}});
+        screen.getAllByRole('button').forEach(button => {
+            expect(button).not.toBeDisabled();
+        });
+    });
+
+    it('disables all buttons for white cat', () => {
+        renderComponent({cat: {fullWhite: true}});
+        screen.getAllByRole('button').forEach(button => {
+            expect(button).toBeDisabled();
+        });
+    });
 });
