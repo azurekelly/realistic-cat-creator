@@ -12,7 +12,6 @@ const renderComponent = (initialState = {}) => {
     return {store, view};
 };
 
-// TODO handle odd cases with smoke, possibly requiring a state shape change
 const buttons = [
     ['Mackerel', {pattern: 'mackerel'}],
     ['Classic', {pattern: 'classic'}],
@@ -31,8 +30,43 @@ describe('PatternSection component', () => {
     });
 
     it.each(buttons)('has functioning %s button', (buttonName, expectedState) => {
-        const {store} = renderComponent({cat: {pattern: null}});
+        const {store} = renderComponent({cat: {tabby: true, pattern: null}});
         userEvent.click(screen.getByRole('button', {name: buttonName}));
         expect(store.getState().cat).toMatchObject(expectedState);
+    });
+
+    it('enable all buttons for tabby cat', () => {
+        renderComponent({cat: {tabby: true, tortie: false, baseColor: 'black', fullWhite: false}});
+        screen.getAllByRole('button').forEach(button => {
+            expect(button).not.toBeDisabled();
+        });
+    });
+
+    it('enable all buttons for tortie cat', () => {
+        renderComponent({cat: {tabby: false, tortie: true, baseColor: 'black', fullWhite: false}});
+        screen.getAllByRole('button').forEach(button => {
+            expect(button).not.toBeDisabled();
+        });
+    });
+
+    it('enable all buttons for red cat', () => {
+        renderComponent({cat: {tabby: false, tortie: false, baseColor: 'red', fullWhite: false}});
+        screen.getAllByRole('button').forEach(button => {
+            expect(button).not.toBeDisabled();
+        });
+    });
+
+    it('disable all buttons for solid non-red cat', () => {
+        renderComponent({cat: {tabby: false, tortie: false, baseColor: 'black', fullWhite: false}});
+        screen.getAllByRole('button').forEach(button => {
+            expect(button).toBeDisabled();
+        });
+    });
+
+    it('disable all buttons for full white cat', () => {
+        renderComponent({cat: {tabby: true, tortie: true, baseColor: 'red', fullWhite: true}});
+        screen.getAllByRole('button').forEach(button => {
+            expect(button).toBeDisabled();
+        });
     });
 });

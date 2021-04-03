@@ -1,9 +1,10 @@
-import {useDispatch} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import Section from '../Section';
-import {updateCat} from '../../state/catState';
+import {catSelector, updateCat} from '../../state/catState';
 
 const PatternSection = () => {
     const dispatch = useDispatch();
+    const cat = useSelector(catSelector);
     const buttons = [
         {label: 'Mackerel', onClick: () => dispatch(updateCat({pattern: 'mackerel'}))},
         {label: 'Classic', onClick: () => dispatch(updateCat({pattern: 'classic'}))},
@@ -15,7 +16,7 @@ const PatternSection = () => {
         {label: 'Tipped', onClick: () => dispatch(updateCat({pattern: 'tipped'}))}
     ];
 
-    return <Section title='Pattern' buttons={buttons} />;
+    return <Section title='Pattern' buttons={buttons} disabled={(!cat.tabby && !cat.tortie && (cat.baseColor !== 'red')) || cat.fullWhite} />;
 };
 
 export default PatternSection;
