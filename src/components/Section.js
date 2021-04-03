@@ -7,7 +7,7 @@ const sliderMax = 16;
 const sliderDefault = 8;
 
 // buttons and sliders should be passed as objects, not components
-const Section = ({title, buttons, sliders, advancedCollapsed = true}) => (
+const Section = ({title, buttons, sliders, disabled, advancedCollapsed = true}) => (
     <section>
         <h2>{title}</h2>
         {buttons && (buttons.map(button => (
@@ -15,6 +15,7 @@ const Section = ({title, buttons, sliders, advancedCollapsed = true}) => (
                 key={button.label}
                 value={button.label}
                 onClick={button.onClick}
+                disabled={button.disabled || disabled}
             />
         )))}
         {sliders && (
@@ -28,6 +29,7 @@ const Section = ({title, buttons, sliders, advancedCollapsed = true}) => (
                         value={slider.value}
                         step={1}
                         onChange={slider.onChange}
+                        disabled={slider.disabled || disabled}
                     />
                 ))}
             </AdvancedSection>
