@@ -20,7 +20,7 @@ const WhiteSection = () => {
         }
     ];
 
-    return <Section title='White markings' buttons={buttons} sliders={sliders} />;
+    return <Section title='White markings' buttons={buttons} sliders={sliders} disabled={cat.fullWhite} />;
 };
 
 export default WhiteSection;
