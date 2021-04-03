@@ -16,18 +16,19 @@ const FurColorSection = () => {
         {label: 'Fawn', onClick: () => dispatch(updateCat({baseColor: 'cinnamon', dilute: true, fullWhite: false}))},
         {label: 'Cream', onClick: () => dispatch(updateCat({baseColor: 'red', dilute: true, fullWhite: false}))},
         {label: 'White', onClick: () => dispatch(updateCat({fullWhite: true}))}
-    ]
-    ;
+    ];
     const sliders = [
         {
             label: 'Redness',
             onChange: ({target: {value}}) => dispatch(updateCat({redness: Number(value)})),
-            value: cat.redness
+            value: cat.redness,
+            disabled: cat.baseColor !== 'red' || cat.fullWhite
         },
         {
             label: 'Dilution',
             onChange: ({target: {value}}) => dispatch(updateCat({dilution: Number(value)})),
-            value: cat.dilution
+            value: cat.dilution,
+            disabled: !cat.dilute || cat.fullWhite
         }
     ];
 
