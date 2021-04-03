@@ -41,4 +41,65 @@ describe('MarkingTypeSection component', () => {
         fireEvent.change(screen.getByRole('slider', {name: sliderName}), {target: {value: 1}});
         expect(stateSelector(store.getState())).toBe(1);
     });
+
+    it('enables all buttons for non-red non-white cat', () => {
+        renderComponent({cat: {baseColor: 'black', fullWhite: false}});
+        screen.getAllByRole('button').forEach(button => {
+            expect(button).not.toBeDisabled();
+        });
+    });
+
+    it('disables all buttons for full white', () => {
+        renderComponent({cat: {baseColor: 'black', fullWhite: true}});
+        screen.getAllByRole('button', {name: /^((?!Advanced).)*$/}).forEach(button => {
+            expect(button).toBeDisabled();
+        });
+    });
+
+    it('disables all buttons for red cat', () => {
+        renderComponent({cat: {baseColor: 'red', fullWhite: false}});
+        screen.getAllByRole('button', {name: /^((?!Advanced).)*$/}).forEach(button => {
+            expect(button).toBeDisabled();
+        });
+    });
+
+    it('enables all sliders for tabby cat', () => {
+        renderComponent({cat: {tabby: true, tortie: false, baseColor: 'black', fullWhite: false}});
+        userEvent.click(screen.getByRole('button', {name: 'Advanced'}));
+        screen.getAllByRole('slider').forEach(slider => {
+            expect(slider).not.toBeDisabled();
+        });
+    });
+
+    it('enables all sliders for tortie cat', () => {
+        renderComponent({cat: {tabby: false, tortie: true, baseColor: 'black', fullWhite: false}});
+        userEvent.click(screen.getByRole('button', {name: 'Advanced'}));
+        screen.getAllByRole('slider').forEach(slider => {
+            expect(slider).not.toBeDisabled();
+        });
+    });
+
+    it('enables all sliders for red cat', () => {
+        renderComponent({cat: {tabby: false, tortie: false, baseColor: 'red', fullWhite: false}});
+        userEvent.click(screen.getByRole('button', {name: 'Advanced'}));
+        screen.getAllByRole('slider').forEach(slider => {
+            expect(slider).not.toBeDisabled();
+        });
+    });
+
+    it('disables all sliders for solid non-red cat', () => {
+        renderComponent({cat: {tabby: false, tortie: false, baseColor: 'black', fullWhite: false}});
+        userEvent.click(screen.getByRole('button', {name: 'Advanced'}));
+        screen.getAllByRole('slider').forEach(slider => {
+            expect(slider).toBeDisabled();
+        });
+    });
+
+    it('disables all sliders for full white cat', () => {
+        renderComponent({cat: {tabby: true, tortie: true, baseColor: 'red', fullWhite: true}});
+        userEvent.click(screen.getByRole('button', {name: 'Advanced'}));
+        screen.getAllByRole('slider').forEach(slider => {
+            expect(slider).toBeDisabled();
+        });
+    });
 });
