@@ -5,6 +5,7 @@ import '@testing-library/jest-dom/extend-expect';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import reducer from '../../../state/rootReducer';
+import { renderIntoDocument } from 'react-dom/test-utils';
 
 const renderComponent = (initialState = {}) => {
     const store = createStore(reducer, initialState);
@@ -101,5 +102,11 @@ describe('MarkingTypeSection component', () => {
         screen.getAllByRole('slider').forEach(slider => {
             expect(slider).toBeDisabled();
         });
+    });
+
+    it('enables redness slider for smoke cat', () => {
+        renderComponent({cat: {tabby: false, tortie: false, baseColor: 'black', fullWhite: false, silver: true}});
+        userEvent.click(screen.getByRole('button', {name: 'Advanced'}));
+        expect(screen.getByRole('slider', {name: 'Redness'})).not.toBeDisabled();
     });
 });

@@ -16,7 +16,7 @@ const MarkingTypeSection = () => {
             label: 'Redness',
             onChange: ({target: {value}}) => dispatch(updateCat({redness: Number(value)})),
             value: cat.redness,
-            disabled: !cat.tabby && !cat.tortie && (cat.baseColor !== 'red')
+            disabled: !cat.tabby && !cat.tortie && (cat.baseColor !== 'red') && !cat.silver
         },
         {
             label: 'Contrast',
