@@ -40,8 +40,8 @@
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^13.1.1",
+    "canvas": "^2.7.0",
     "eslint-config-personal": "github:azurekelly/eslint-config-personal",
-    "eslint-plugin-jest": "^24.3.1",
-    "jest-canvas-mock": "^2.3.1"
+    "eslint-plugin-jest": "^24.3.1"
   }
 }
