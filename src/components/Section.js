@@ -25,7 +25,7 @@ const Section = ({title, buttons, sliders, advancedCollapsed = true}) => (
                         label={slider.label}
                         min={sliderMin}
                         max={sliderMax}
-                        defaultValue={sliderDefault}
+                        value={slider.value}
                         step={1}
                         onChange={slider.onChange}
                     />

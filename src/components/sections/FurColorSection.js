@@ -1,9 +1,10 @@
-import {useDispatch} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import Section from '../Section';
-import {updateCat} from '../../state/catState';
+import {catSelector, updateCat} from '../../state/catState';
 
 const FurColorSection = () => {
     const dispatch = useDispatch();
+    const cat = useSelector(catSelector);
 
     const buttons = [
         {label: 'Black', onClick: () => dispatch(updateCat({baseColor: 'black', dilute: false, fullWhite: false}))},
@@ -18,8 +19,16 @@ const FurColorSection = () => {
     ]
     ;
     const sliders = [
-        {label: 'Redness', onChange: ({target: {value}}) => dispatch(updateCat({redness: Number(value)}))},
-        {label: 'Dilution', onChange: ({target: {value}}) => dispatch(updateCat({dilution: Number(value)}))}
+        {
+            label: 'Redness',
+            onChange: ({target: {value}}) => dispatch(updateCat({redness: Number(value)})),
+            value: cat.redness
+        },
+        {
+            label: 'Dilution',
+            onChange: ({target: {value}}) => dispatch(updateCat({dilution: Number(value)})),
+            value: cat.dilution
+        }
     ];
 
     return <Section title={'Fur color'} buttons={buttons} sliders={sliders} />;
