@@ -8,9 +8,8 @@ export const loadImage = src => (
     })
 );
 
-export const mapRange = (value, currMin, currMax, targetMin, targetMax) => {
-    const currentRange = currMax - currMin;
+export const mapTraitToRange = (value, targetMin, targetMax) => {
+    const traitRange = 16; // trait range is 0-16
     const targetRange = targetMax - targetMin;
-    const relativeValue = value - currMin;
-    return relativeValue / currentRange * targetRange + targetMin;
+    return value / traitRange * targetRange + targetMin;
 };

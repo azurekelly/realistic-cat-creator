@@ -7,7 +7,7 @@ import {
     getRedSettings,
     getAgoutiSettings
 } from '../catColors';
-import {mapRange} from '../../utils/utils';
+import {mapTraitToRange} from '../../utils/utils';
 
 describe('getEumelaninAbsorption', () => {
     it('returns expected absorption value for a given concentration', () => {
@@ -125,7 +125,7 @@ describe('getBlackSettings', () => {
         const settings = getBlackSettings({baseColor: 'black', dilute: true, dilution: 6, point: 'standard', silver: false});
         expect(settings[0]).toBe('eumelanin');
         expect(settings[1]).toBe(CONSTANTS.blackIntensity);
-        expect(settings[2]).toBeCloseTo(mapRange(6, 0, 16, CONSTANTS.dilutionMin, CONSTANTS.dilutionMax));
+        expect(settings[2]).toBeCloseTo(mapTraitToRange(6, CONSTANTS.dilutionMin, CONSTANTS.dilutionMax));
         expect(settings[3]).toBe(0);
     });
 
@@ -189,7 +189,7 @@ describe('getRedSettings', () => {
             const settings = getRedSettings({redness: redness, dilute: false, point: 'standard', silver: false});
             expect(settings).toHaveLength(4);
             expect(settings[0]).toBe('pheomelanin');
-            expect(settings[1]).toBeCloseTo(mapRange(redness, 0, 16, CONSTANTS.redMinIntensity, CONSTANTS.redMaxIntensity));
+            expect(settings[1]).toBeCloseTo(mapTraitToRange(redness, CONSTANTS.redMinIntensity, CONSTANTS.redMaxIntensity));
             expect(settings[2]).toBe(0);
             expect(settings[3]).toBe(0);
         });
@@ -198,15 +198,15 @@ describe('getRedSettings', () => {
     it('handles cream cats', () => {
         const settings = getRedSettings({redness: 6, dilute: true, dilution: 10, point: 'standard', silver: false});
         expect(settings[0]).toBe('pheomelanin');
-        expect(settings[1]).toBeCloseTo(mapRange(6, 0, 16, CONSTANTS.redMinIntensity, CONSTANTS.redMaxIntensity));
-        expect(settings[2]).toBeCloseTo(mapRange(10, 0, 16, CONSTANTS.dilutionMin, CONSTANTS.dilutionMax));
+        expect(settings[1]).toBeCloseTo(mapTraitToRange(6, CONSTANTS.redMinIntensity, CONSTANTS.redMaxIntensity));
+        expect(settings[2]).toBeCloseTo(mapTraitToRange(10, CONSTANTS.dilutionMin, CONSTANTS.dilutionMax));
         expect(settings[3]).toBe(0);
     });
 
     it('handles silver cats', () => {
         const settings = getRedSettings({redness: 9, dilute: false, point: 'standard', silver: true});
         expect(settings[0]).toBe('pheomelanin');
-        expect(settings[1]).toBeCloseTo(mapRange(9, 0, 16, CONSTANTS.redMinIntensity, CONSTANTS.redMaxIntensity));
+        expect(settings[1]).toBeCloseTo(mapTraitToRange(9, CONSTANTS.redMinIntensity, CONSTANTS.redMaxIntensity));
         expect(settings[2]).toBe(0);
         expect(settings[3]).toBe(CONSTANTS.redSilverFactor);
     });
@@ -216,7 +216,7 @@ describe('getRedSettings', () => {
         colorpoints.forEach(colorpoint => {
             const settings = getRedSettings({redness: 2, dilute: false, point: colorpoint, silver: false});
             expect(settings[0]).toBe('pheomelanin');
-            expect(settings[1]).toBeCloseTo(mapRange(2, 0, 16, CONSTANTS.redMinIntensity, CONSTANTS.redMaxIntensity) * CONSTANTS.pointRedFactor); // dark color doesn't change between types
+            expect(settings[1]).toBeCloseTo(mapTraitToRange(2, CONSTANTS.redMinIntensity, CONSTANTS.redMaxIntensity) * CONSTANTS.pointRedFactor); // dark color doesn't change between types
             expect(settings[2]).toBe(0);
             expect(settings[3]).toBe(0);
         });
@@ -225,7 +225,7 @@ describe('getRedSettings', () => {
     it('handles point light colors', () => {
         const settings = getRedSettings({redness: 13, dilute: false, point: 'point', silver: false}, true);
         expect(settings[0]).toBe('pheomelanin');
-        expect(settings[1]).toBeCloseTo(mapRange(13, 0, 16, CONSTANTS.redMinIntensity, CONSTANTS.redMaxIntensity) * CONSTANTS.pointLightFactor);
+        expect(settings[1]).toBeCloseTo(mapTraitToRange(13, CONSTANTS.redMinIntensity, CONSTANTS.redMaxIntensity) * CONSTANTS.pointLightFactor);
         expect(settings[2]).toBe(0);
         expect(settings[3]).toBe(0);
     });
@@ -233,7 +233,7 @@ describe('getRedSettings', () => {
     it('handles mink light colors', () => {
         const settings = getRedSettings({redness: 7, dilute: false, point: 'mink', silver: false}, true);
         expect(settings[0]).toBe('pheomelanin');
-        expect(settings[1]).toBeCloseTo(mapRange(7, 0, 16, CONSTANTS.redMinIntensity, CONSTANTS.redMaxIntensity) * CONSTANTS.minkLightFactor);
+        expect(settings[1]).toBeCloseTo(mapTraitToRange(7, CONSTANTS.redMinIntensity, CONSTANTS.redMaxIntensity) * CONSTANTS.minkLightFactor);
         expect(settings[2]).toBe(0);
         expect(settings[3]).toBe(0);
     });
@@ -241,7 +241,7 @@ describe('getRedSettings', () => {
     it('handles sepia light colors', () => {
         const settings = getRedSettings({redness: 2, dilute: false, point: 'sepia', silver: false}, true);
         expect(settings[0]).toBe('pheomelanin');
-        expect(settings[1]).toBeCloseTo(mapRange(2, 0, 16, CONSTANTS.redMinIntensity, CONSTANTS.redMaxIntensity) * CONSTANTS.sepiaLightFactor);
+        expect(settings[1]).toBeCloseTo(mapTraitToRange(2, CONSTANTS.redMinIntensity, CONSTANTS.redMaxIntensity) * CONSTANTS.sepiaLightFactor);
         expect(settings[2]).toBe(0);
         expect(settings[3]).toBe(0);
     });
@@ -255,7 +255,7 @@ describe('getAgoutiSettings', () => {
             const settings = getAgoutiSettings({redness: redness, dilute: false, point: 'standard', silver: false});
             expect(settings).toHaveLength(4);
             expect(settings[0]).toBe('pheomelanin');
-            expect(settings[1]).toBeCloseTo(mapRange(redness, 0, 16, CONSTANTS.redMinIntensity, CONSTANTS.redMaxIntensity) * CONSTANTS.agoutiFactor);
+            expect(settings[1]).toBeCloseTo(mapTraitToRange(redness, CONSTANTS.redMinIntensity, CONSTANTS.redMaxIntensity) * CONSTANTS.agoutiFactor);
             expect(settings[2]).toBe(0);
             expect(settings[3]).toBe(0);
         });
@@ -264,7 +264,7 @@ describe('getAgoutiSettings', () => {
     it('handles silver cats', () => {
         const settings = getAgoutiSettings({redness: 12, dilute: false, point: 'standard', silver: true});
         expect(settings[0]).toBe('pheomelanin');
-        expect(settings[1]).toBeCloseTo(mapRange(12, 0, 16, CONSTANTS.redMinIntensity, CONSTANTS.redMaxIntensity) * CONSTANTS.agoutiFactor);
+        expect(settings[1]).toBeCloseTo(mapTraitToRange(12, CONSTANTS.redMinIntensity, CONSTANTS.redMaxIntensity) * CONSTANTS.agoutiFactor);
         expect(settings[2]).toBe(0);
         expect(settings[3]).toBe(CONSTANTS.agoutiSilverFactor);
     });
@@ -272,8 +272,8 @@ describe('getAgoutiSettings', () => {
     it('handles dilute cats', () => {
         const settings = getAgoutiSettings({redness: 14, dilute: true, dilution: 7, point: 'standard', silver: false});
         expect(settings[0]).toBe('pheomelanin');
-        expect(settings[1]).toBeCloseTo(mapRange(14, 0, 16, CONSTANTS.redMinIntensity, CONSTANTS.redMaxIntensity) * CONSTANTS.agoutiFactor);
-        expect(settings[2]).toBe(mapRange(7, 0, 16, CONSTANTS.dilutionMin, CONSTANTS.dilutionMax));
+        expect(settings[1]).toBeCloseTo(mapTraitToRange(14, CONSTANTS.redMinIntensity, CONSTANTS.redMaxIntensity) * CONSTANTS.agoutiFactor);
+        expect(settings[2]).toBe(mapTraitToRange(7, CONSTANTS.dilutionMin, CONSTANTS.dilutionMax));
         expect(settings[3]).toBe(0);
     });
 
@@ -282,7 +282,7 @@ describe('getAgoutiSettings', () => {
         colorpoints.forEach(colorpoint => {
             const settings = getAgoutiSettings({redness: 13, dilute: false, point: colorpoint, silver: false});
             expect(settings[0]).toBe('pheomelanin');
-            expect(settings[1]).toBeCloseTo(mapRange(13, 0, 16, CONSTANTS.redMinIntensity, CONSTANTS.redMaxIntensity) * CONSTANTS.agoutiFactor * CONSTANTS.pointRedFactor); // dark color doesn't change between types
+            expect(settings[1]).toBeCloseTo(mapTraitToRange(13, CONSTANTS.redMinIntensity, CONSTANTS.redMaxIntensity) * CONSTANTS.agoutiFactor * CONSTANTS.pointRedFactor); // dark color doesn't change between types
             expect(settings[2]).toBe(0);
             expect(settings[3]).toBe(0);
         });
@@ -291,7 +291,7 @@ describe('getAgoutiSettings', () => {
     it('handles point light colors', () => {
         const settings = getAgoutiSettings({redness: 11, dilute: false, point: 'point', silver: false}, true);
         expect(settings[0]).toBe('pheomelanin');
-        expect(settings[1]).toBeCloseTo(mapRange(11, 0, 16, CONSTANTS.redMinIntensity, CONSTANTS.redMaxIntensity) * CONSTANTS.agoutiFactor * CONSTANTS.pointLightFactor);
+        expect(settings[1]).toBeCloseTo(mapTraitToRange(11, CONSTANTS.redMinIntensity, CONSTANTS.redMaxIntensity) * CONSTANTS.agoutiFactor * CONSTANTS.pointLightFactor);
         expect(settings[2]).toBe(0);
         expect(settings[3]).toBe(0);
     });
@@ -299,7 +299,7 @@ describe('getAgoutiSettings', () => {
     it('handles mink light colors', () => {
         const settings = getAgoutiSettings({redness: 9, dilute: false, point: 'mink', silver: false}, true);
         expect(settings[0]).toBe('pheomelanin');
-        expect(settings[1]).toBeCloseTo(mapRange(9, 0, 16, CONSTANTS.redMinIntensity, CONSTANTS.redMaxIntensity) * CONSTANTS.agoutiFactor * CONSTANTS.minkLightFactor);
+        expect(settings[1]).toBeCloseTo(mapTraitToRange(9, CONSTANTS.redMinIntensity, CONSTANTS.redMaxIntensity) * CONSTANTS.agoutiFactor * CONSTANTS.minkLightFactor);
         expect(settings[2]).toBe(0);
         expect(settings[3]).toBe(0);
     });
@@ -307,7 +307,7 @@ describe('getAgoutiSettings', () => {
     it('handles sepia light colors', () => {
         const settings = getAgoutiSettings({redness: 4, dilute: false, point: 'sepia', silver: false}, true);
         expect(settings[0]).toBe('pheomelanin');
-        expect(settings[1]).toBeCloseTo(mapRange(4, 0, 16, CONSTANTS.redMinIntensity, CONSTANTS.redMaxIntensity) * CONSTANTS.agoutiFactor * CONSTANTS.sepiaLightFactor);
+        expect(settings[1]).toBeCloseTo(mapTraitToRange(4, CONSTANTS.redMinIntensity, CONSTANTS.redMaxIntensity) * CONSTANTS.agoutiFactor * CONSTANTS.sepiaLightFactor);
         expect(settings[2]).toBe(0);
         expect(settings[3]).toBe(0);
     });

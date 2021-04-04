@@ -1,5 +1,5 @@
 import {rgbToHex, blendAlpha} from '../utils/color-utils';
-import {mapRange} from '../utils/utils';
+import {mapTraitToRange} from '../utils/utils';
 
 // CONSTANTS
 export const CONSTANTS = {
@@ -70,33 +70,33 @@ export const getBlackSettings = (cat, pointLight = false) => {
     return [
         'eumelanin',
         baseIntensity * pointFactor,
-        cat.dilute ? mapRange(cat.dilution, 0, 16, CONSTANTS.dilutionMin, CONSTANTS.dilutionMax) : 0,
+        cat.dilute ? mapTraitToRange(cat.dilution, CONSTANTS.dilutionMin, CONSTANTS.dilutionMax) : 0,
         0
     ];
 };
 
 export const getRedSettings = (cat, pointLight = false) => {
-    const baseIntensity = mapRange(cat.redness, 0, 16, CONSTANTS.redMinIntensity, CONSTANTS.redMaxIntensity);
+    const baseIntensity = mapTraitToRange(cat.redness, CONSTANTS.redMinIntensity, CONSTANTS.redMaxIntensity);
     const pointFactor = cat.point === 'standard' ? 1 : (
         pointLight ? CONSTANTS[cat.point + 'LightFactor'] : CONSTANTS.pointRedFactor
     );
     return [
         'pheomelanin',
         baseIntensity * pointFactor,
-        cat.dilute ? mapRange(cat.dilution, 0, 16, CONSTANTS.dilutionMin, CONSTANTS.dilutionMax) : 0,
+        cat.dilute ? mapTraitToRange(cat.dilution, CONSTANTS.dilutionMin, CONSTANTS.dilutionMax) : 0,
         cat.silver ? CONSTANTS.redSilverFactor : 0
     ];
 };
 
 export const getAgoutiSettings = (cat, pointLight = false) => {
-    const baseIntensity = mapRange(cat.redness, 0, 16, CONSTANTS.redMinIntensity, CONSTANTS.redMaxIntensity);
+    const baseIntensity = mapTraitToRange(cat.redness, CONSTANTS.redMinIntensity, CONSTANTS.redMaxIntensity);
     const pointFactor = cat.point === 'standard' ? 1 : (
         pointLight ? CONSTANTS[cat.point + 'LightFactor'] : CONSTANTS.pointRedFactor
     );
     return [
         'pheomelanin',
         baseIntensity * pointFactor * CONSTANTS.agoutiFactor,
-        cat.dilute ? mapRange(cat.dilution, 0, 16, CONSTANTS.dilutionMin, CONSTANTS.dilutionMax) : 0,
+        cat.dilute ? mapTraitToRange(cat.dilution, CONSTANTS.dilutionMin, CONSTANTS.dilutionMax) : 0,
         cat.silver ? CONSTANTS.agoutiSilverFactor : 0
     ];
 };
@@ -105,9 +105,9 @@ const blendAgouti = (baseSettings, cat, pointLight = false) => {
     const baseRgb = simulateMelanin(...baseSettings);
     const agoutiRgb = simulateMelanin(...getAgoutiSettings(cat, pointLight));
     if(cat.silver) {
-        return rgbToHex(blendAlpha(baseRgb, agoutiRgb, mapRange(cat.patternContrast, 0, 16, CONSTANTS.silverContrastMin, CONSTANTS.silverContrastMax)));
+        return rgbToHex(blendAlpha(baseRgb, agoutiRgb, mapTraitToRange(cat.patternContrast, CONSTANTS.silverContrastMin, CONSTANTS.silverContrastMax)));
     }
-    return rgbToHex(blendAlpha(baseRgb, agoutiRgb, mapRange(cat.patternContrast, 0, 16, CONSTANTS.agoutiContrastMin, CONSTANTS.agoutiContrastMax)));
+    return rgbToHex(blendAlpha(baseRgb, agoutiRgb, mapTraitToRange(cat.patternContrast, CONSTANTS.agoutiContrastMin, CONSTANTS.agoutiContrastMax)));
 };
 
 // red methods need to be separate for ease of getting tortie colors

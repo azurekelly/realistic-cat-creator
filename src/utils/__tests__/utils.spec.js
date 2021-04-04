@@ -1,4 +1,4 @@
-import {loadImage, mapRange} from '../utils';
+import {loadImage, mapTraitToRange} from '../utils';
 
 describe('loadImage', () => {
     it('resolves promise when image loads', () => {
@@ -47,20 +47,12 @@ describe('loadImage', () => {
     });
 });
 
-describe('mapRange', () => {
+describe('mapTraitToRange', () => {
     it('maps a range to another range', () => {
-        expect(mapRange(5, 0, 16, 0, 1)).toBeCloseTo(0.3125);
+        expect(mapTraitToRange(5, 0, 1)).toBeCloseTo(0.3125);
     });
 
     it('works with non-zero minimum values', () => {
-        expect(mapRange(15, 10, 20, 20, 30)).toBe(25);
-    });
-
-    it('does not clamp values less than lower boundary', () => {
-        expect(mapRange(3, 10, 20, 150, 300)).toBe(45);
-    });
-
-    it('does not clamp values higher than upper boundary', () => {
-        expect(mapRange(90, 30, 60, 20, 40)).toBe(60);
+        expect(mapTraitToRange(8, 20, 30)).toBe(25);
     });
 });
