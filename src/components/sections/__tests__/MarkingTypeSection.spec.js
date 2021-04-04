@@ -5,19 +5,20 @@ import '@testing-library/jest-dom/extend-expect';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import reducer from '../../../state/rootReducer';
-import { renderIntoDocument } from 'react-dom/test-utils';
+import {initialState as storeState} from '../../../state/store';
 
-const renderComponent = (initialState = {}) => {
-    const store = createStore(reducer, initialState);
+const renderComponent = (state = {}) => {
+    const cat = {...storeState.cat, ...state.cat};
+    const store = createStore(reducer, {...storeState, ...state, cat});
     const view = render(<Provider store={store}><MarkingTypeSection /></Provider>);
     return {store, view};
 };
 
 const buttons = [
-    ['Solid', {tabby: false, tortie: false}],
-    ['Tabby', {tabby: true, tortie: false}],
-    ['Tortie', {tabby: false, tortie: true}],
-    ['Torbie', {tabby: true, tortie: true}]
+    ['Solid', {tabby: false, tortie: false}, {tabby: true, tortie: true}],
+    ['Tabby', {tabby: true, tortie: false}, {tabby: false, tortie: true}],
+    ['Tortie', {tabby: false, tortie: true}, {tabby: true, tortie: false}],
+    ['Torbie', {tabby: true, tortie: true}, {tabby: false, tortie: false}]
 ];
 const sliders = [
     ['Redness', state => state.cat.redness],
@@ -30,8 +31,8 @@ describe('MarkingTypeSection component', () => {
         expect(screen.getByRole('heading', {name: 'Marking type'})).toBeInTheDocument();
     });
 
-    it.each(buttons)('has functioning %s button', (buttonName, expectedState) => {
-        const {store} = renderComponent({cat: {tabby: null, tortie: null}});
+    it.each(buttons)('has functioning %s button', (buttonName, expectedState, initialState) => {
+        const {store} = renderComponent({cat: initialState});
         userEvent.click(screen.getByRole('button', {name: buttonName}));
         expect(store.getState().cat).toMatchObject(expectedState);
     });

@@ -5,18 +5,20 @@ import '@testing-library/jest-dom/extend-expect';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import reducer from '../../../state/rootReducer';
+import {initialState as storeState} from '../../../state/store';
 
-const renderComponent = (initialState = {}) => {
-    const store = createStore(reducer, initialState);
+const renderComponent = (state = {}) => {
+    const cat = {...storeState.cat, ...state.cat};
+    const store = createStore(reducer, {...storeState, ...state, cat});
     const view = render(<Provider store={store}><PointSection /></Provider>);
     return {store, view};
 };
 
 const buttons = [
-    ['Standard', {point: 'standard'}],
-    ['Point', {point: 'point'}],
-    ['Mink', {point: 'mink'}],
-    ['Sepia', {point: 'sepia'}]
+    ['Standard', {point: 'standard'}, {point: 'point'}],
+    ['Point', {point: 'point'}, {point: 'standard'}],
+    ['Mink', {point: 'mink'}, {point: 'standard'}],
+    ['Sepia', {point: 'sepia'}, {point: 'standard'}]
 ];
 
 describe('PointSection component', () => {
@@ -25,8 +27,8 @@ describe('PointSection component', () => {
         expect(screen.getByRole('heading', {name: 'Colorpoint'})).toBeInTheDocument();
     });
 
-    it.each(buttons)('has functioning %s button', (buttonName, expectedState) => {
-        const {store} = renderComponent({cat: {point: null}});
+    it.each(buttons)('has functioning %s button', (buttonName, expectedState, initialState) => {
+        const {store} = renderComponent({cat: initialState});
         userEvent.click(screen.getByRole('button', {name: buttonName}));
         expect(store.getState().cat).toMatchObject(expectedState);
     });

@@ -4,30 +4,32 @@ import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom/extend-expect';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
-import reducer from '../../../state/rootReducer';
 import {catSelector} from '../../../state/catState';
+import reducer from '../../../state/rootReducer';
+import {initialState as storeState} from '../../../state/store';
+
+const renderComponent = (state = {}) => {
+    const cat = {...storeState.cat, ...state.cat};
+    const store = createStore(reducer, {...storeState, ...state, cat});
+    const view = render(<Provider store={store}><FurColorSection /></Provider>);
+    return {store, view};
+};
 
 const buttons = [
-    ['Black', {baseColor: 'black', dilute: false, fullWhite: false}],
-    ['Chocolate', {baseColor: 'chocolate', dilute: false, fullWhite: false}],
-    ['Cinnamon', {baseColor: 'cinnamon', dilute: false, fullWhite: false}],
-    ['Red', {baseColor: 'red', dilute: false, fullWhite: false}],
-    ['Gray', {baseColor: 'black', dilute: true, fullWhite: false}],
-    ['Lilac', {baseColor: 'chocolate', dilute: true, fullWhite: false}],
-    ['Fawn', {baseColor: 'cinnamon', dilute: true, fullWhite: false}],
-    ['Cream', {baseColor: 'red', dilute: true, fullWhite: false}],
-    ['White', {fullWhite: true}]
+    ['Black', {baseColor: 'black', dilute: false, fullWhite: false}, {baseColor: '', dilute: true, fullWhite: true}],
+    ['Chocolate', {baseColor: 'chocolate', dilute: false, fullWhite: false}, {baseColor: '', dilute: true, fullWhite: true}],
+    ['Cinnamon', {baseColor: 'cinnamon', dilute: false, fullWhite: false}, {baseColor: '', dilute: true, fullWhite: true}],
+    ['Red', {baseColor: 'red', dilute: false, fullWhite: false}, {baseColor: '', dilute: true, fullWhite: true}],
+    ['Gray', {baseColor: 'black', dilute: true, fullWhite: false}, {baseColor: '', dilute: false, fullWhite: true}],
+    ['Lilac', {baseColor: 'chocolate', dilute: true, fullWhite: false}, {baseColor: '', dilute: false, fullWhite: true}],
+    ['Fawn', {baseColor: 'cinnamon', dilute: true, fullWhite: false}, {baseColor: '', dilute: false, fullWhite: true}],
+    ['Cream', {baseColor: 'red', dilute: true, fullWhite: false}, {baseColor: '', dilute: false, fullWhite: true}],
+    ['White', {fullWhite: true}, {fullWhite: false}]
 ];
 const sliders = [
     ['Redness', state => catSelector(state).redness],
     ['Dilution', state => catSelector(state).dilution]
 ];
-
-const renderComponent = (initialState = {}) => {
-    const store = createStore(reducer, initialState);
-    const view = render(<Provider store={store}><FurColorSection /></Provider>);
-    return {store, view};
-};
 
 describe('FurColorSection component', () => {
     it('has section heading', () => {
@@ -35,8 +37,8 @@ describe('FurColorSection component', () => {
         expect(screen.getByText('Fur color')).toBeInTheDocument();
     });
 
-    it.each(buttons)('has functioning %s button', (buttonName, expectedState) => {
-        const {store} = renderComponent({cat: {baseColor: '', dilution: null, fullWhite: null}});
+    it.each(buttons)('has functioning %s button', (buttonName, expectedState, initialState) => {
+        const {store} = renderComponent({cat: initialState});
         userEvent.click(screen.getByRole('button', {name: buttonName}));
         expect(catSelector(store.getState())).toMatchObject(expectedState);
     });

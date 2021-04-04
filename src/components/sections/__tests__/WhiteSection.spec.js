@@ -5,9 +5,11 @@ import '@testing-library/jest-dom/extend-expect';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import reducer from '../../../state/rootReducer';
+import {initialState as storeState} from '../../../state/store';
 
-const renderComponent = (initialState = {}) => {
-    const store = createStore(reducer, initialState);
+const renderComponent = (state = {}) => {
+    const cat = {...storeState.cat, ...state.cat};
+    const store = createStore(reducer, {...storeState, ...state, cat});
     const view = render(<Provider store={store}><WhiteSection /></Provider>);
     return {store, view};
 };
@@ -26,7 +28,7 @@ describe('WhiteSection component', () => {
     });
 
     it.each(buttons)('has functioning %s button', (buttonName, expectedState) => {
-        const {store} = renderComponent({cat: {whiteSpread: null}});
+        const {store} = renderComponent({cat: {whiteSpread: 1}});
         userEvent.click(screen.getByRole('button', {name: buttonName}));
         expect(store.getState().cat).toMatchObject(expectedState);
     });
