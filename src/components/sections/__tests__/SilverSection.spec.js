@@ -23,11 +23,6 @@ describe('SilverSection component', () => {
         expect(screen.getByRole('heading', {name: 'Silver'})).toBeInTheDocument();
     });
 
-    it('does not have advanced section', () => {
-        renderComponent();
-        expect(screen.queryByRole('button', {name: 'Advanced'})).not.toBeInTheDocument();
-    });
-
     it.each(buttons)('has functioning %s button', (buttonName, expectedState) => {
         const {store} = renderComponent({cat: {silver: null}});
         userEvent.click(screen.getByRole('button', {name: buttonName}));

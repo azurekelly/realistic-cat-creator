@@ -23,7 +23,6 @@ describe('EyeColorSection component', () => {
 
     it('displays correct sliders when advanced section is expanded', () => {
         render(<EyeColorSection />);
-        userEvent.click(screen.getByRole('button', {name: 'Advanced'}));
         sliders.forEach(slider => {
             expect(screen.getByLabelText(slider)).toBeInTheDocument();
         });

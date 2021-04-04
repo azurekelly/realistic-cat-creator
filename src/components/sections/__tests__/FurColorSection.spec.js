@@ -43,38 +43,32 @@ describe('FurColorSection component', () => {
 
     it.each(sliders)('has functioning %s slider', (slider, targetState) => {
         const {store} = renderComponent({cat: {redness: 8, dilution: 8}});
-        userEvent.click(screen.getByRole('button', {name: 'Advanced'}));
         fireEvent.change(screen.getByRole('slider', {name: slider}), {target: {value: 1}});
         expect(targetState(store.getState())).toBe(1);
     });
 
     it('enables red slider for red cats', () => {
         renderComponent({cat: {baseColor: 'red', redness: 8, dilution: 8}});
-        userEvent.click(screen.getByRole('button', {name: 'Advanced'}));
         expect(screen.getByRole('slider', {name: 'Redness'})).not.toBeDisabled();
     });
 
     it('disables red slider for non-red cats', () => {
         renderComponent({cat: {baseColor: 'black', redness: 8, dilution: 8}});
-        userEvent.click(screen.getByRole('button', {name: 'Advanced'}));
         expect(screen.getByRole('slider', {name: 'Redness'})).toBeDisabled();
     });
 
     it('enables dilute slider for dilute cats', () => {
         renderComponent({cat: {dilute: true, dilution: 8}});
-        userEvent.click(screen.getByRole('button', {name: 'Advanced'}));
         expect(screen.getByRole('slider', {name: 'Dilution'})).not.toBeDisabled();
     });
 
     it('disables dilute slider for non-dilute cats', () => {
         renderComponent({cat: {dilute: false, dilution: 8}});
-        userEvent.click(screen.getByRole('button', {name: 'Advanced'}));
         expect(screen.getByRole('slider', {name: 'Dilution'})).toBeDisabled();
     });
 
     it('disables both sliders for full white cats', () => {
         renderComponent({cat: {fullWhite: true, dilute: true, baseColor: 'red'}});
-        userEvent.click(screen.getByRole('button', {name: 'Advanced'}));
         expect(screen.getByRole('slider', {name: 'Redness'})).toBeDisabled();
         expect(screen.getByRole('slider', {name: 'Dilution'})).toBeDisabled();
     });

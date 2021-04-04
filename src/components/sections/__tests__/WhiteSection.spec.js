@@ -33,21 +33,20 @@ describe('WhiteSection component', () => {
 
     it('has functioning spread slider', () => {
         const {store} = renderComponent({cat: {whiteSpread: 8}});
-        userEvent.click(screen.getByRole('button', {name: 'Advanced'}));
         fireEvent.change(screen.getByRole('slider', {name: 'Spread'}), {target: {value: 1}});
         expect(store.getState().cat.whiteSpread).toBe(1);
     });
 
     it('enables all buttons for non-white cat', () => {
         renderComponent({cat: {fullWhite: false}});
-        screen.getAllByRole('button', {name: /^((?!Advanced).)*$/}).forEach(button => {
+        screen.getAllByRole('button').forEach(button => {
             expect(button).not.toBeDisabled();
         });
     });
 
     it('disables all buttons for white cat', () => {
         renderComponent({cat: {fullWhite: true}});
-        screen.getAllByRole('button', {name: /^((?!Advanced).)*$/}).forEach(button => {
+        screen.getAllByRole('button').forEach(button => {
             expect(button).toBeDisabled();
         });
     });
