@@ -6,10 +6,30 @@ const MarkingTypeSection = () => {
     const dispatch = useDispatch();
     const cat = useSelector(catSelector);
     const buttons = [
-        {label: 'Solid', onClick: () => dispatch(updateCat({tabby: false, tortie: false})), disabled: cat.baseColor === 'red'},
-        {label: 'Tabby', onClick: () => dispatch(updateCat({tabby: true, tortie: false})), disabled: cat.baseColor === 'red'},
-        {label: 'Tortie', onClick: () => dispatch(updateCat({tabby: false, tortie: true})), disabled: cat.baseColor === 'red'},
-        {label: 'Torbie', onClick: () => dispatch(updateCat({tabby: true, tortie: true})), disabled: cat.baseColor === 'red'}
+        {
+            label: 'Solid',
+            onClick: () => dispatch(updateCat({tabby: false, tortie: false})),
+            disabled: cat.baseColor === 'red',
+            activated: !cat.tabby && !cat.tortie
+        },
+        {
+            label: 'Tabby',
+            onClick: () => dispatch(updateCat({tabby: true, tortie: false})),
+            disabled: cat.baseColor === 'red',
+            activated: cat.tabby && !cat.tortie
+        },
+        {
+            label: 'Tortie',
+            onClick: () => dispatch(updateCat({tabby: false, tortie: true})),
+            disabled: cat.baseColor === 'red',
+            activated: !cat.tabby && cat.tortie
+        },
+        {
+            label: 'Torbie',
+            onClick: () => dispatch(updateCat({tabby: true, tortie: true})),
+            disabled: cat.baseColor === 'red',
+            activated: cat.tabby && cat.tortie
+        }
     ];
     const sliders = [
         {

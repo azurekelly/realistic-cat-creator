@@ -7,6 +7,7 @@ const Button = styled.input.attrs({
     margin-right: 0.5rem;
     margin-bottom: 0.5rem;
     font-family: 'Montserrat', sans-serif;
+    background-color: ${props => (props.activated ? 'lightblue' : '')};
 `;
 
 export default Button;

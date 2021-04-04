@@ -7,15 +7,51 @@ const FurColorSection = () => {
     const cat = useSelector(catSelector);
 
     const buttons = [
-        {label: 'Black', onClick: () => dispatch(updateCat({baseColor: 'black', dilute: false, fullWhite: false}))},
-        {label: 'Chocolate', onClick: () => dispatch(updateCat({baseColor: 'chocolate', dilute: false, fullWhite: false}))},
-        {label: 'Cinnamon', onClick: () => dispatch(updateCat({baseColor: 'cinnamon', dilute: false, fullWhite: false}))},
-        {label: 'Red', onClick: () => dispatch(updateCat({baseColor: 'red', dilute: false, fullWhite: false}))},
-        {label: 'Gray', onClick: () => dispatch(updateCat({baseColor: 'black', dilute: true, fullWhite: false}))},
-        {label: 'Lilac', onClick: () => dispatch(updateCat({baseColor: 'chocolate', dilute: true, fullWhite: false}))},
-        {label: 'Fawn', onClick: () => dispatch(updateCat({baseColor: 'cinnamon', dilute: true, fullWhite: false}))},
-        {label: 'Cream', onClick: () => dispatch(updateCat({baseColor: 'red', dilute: true, fullWhite: false}))},
-        {label: 'White', onClick: () => dispatch(updateCat({fullWhite: true}))}
+        {
+            label: 'Black',
+            onClick: () => dispatch(updateCat({baseColor: 'black', dilute: false, fullWhite: false})),
+            activated: !cat.fullWhite && !cat.dilute && cat.baseColor == 'black'
+        },
+        {
+            label: 'Chocolate',
+            onClick: () => dispatch(updateCat({baseColor: 'chocolate', dilute: false, fullWhite: false})),
+            activated: !cat.fullWhite && !cat.dilute && cat.baseColor == 'chocolate'
+        },
+        {
+            label: 'Cinnamon',
+            onClick: () => dispatch(updateCat({baseColor: 'cinnamon', dilute: false, fullWhite: false})),
+            activated: !cat.fullWhite && !cat.dilute && cat.baseColor == 'cinnamon'
+        },
+        {
+            label: 'Red',
+            onClick: () => dispatch(updateCat({baseColor: 'red', dilute: false, fullWhite: false})),
+            activated: !cat.fullWhite && !cat.dilute && cat.baseColor == 'red'
+        },
+        {
+            label: 'Gray',
+            onClick: () => dispatch(updateCat({baseColor: 'black', dilute: true, fullWhite: false})),
+            activated: !cat.fullWhite && cat.dilute && cat.baseColor == 'black'
+        },
+        {
+            label: 'Lilac',
+            onClick: () => dispatch(updateCat({baseColor: 'chocolate', dilute: true, fullWhite: false})),
+            activated: !cat.fullWhite && cat.dilute && cat.baseColor == 'chocolate'
+        },
+        {
+            label: 'Fawn',
+            onClick: () => dispatch(updateCat({baseColor: 'cinnamon', dilute: true, fullWhite: false})),
+            activated: !cat.fullWhite && cat.dilute && cat.baseColor == 'cinnamon'
+        },
+        {
+            label: 'Cream',
+            onClick: () => dispatch(updateCat({baseColor: 'red', dilute: true, fullWhite: false})),
+            activated: !cat.fullWhite && cat.dilute && cat.baseColor == 'red'
+        },
+        {
+            label: 'White',
+            onClick: () => dispatch(updateCat({fullWhite: true})),
+            activated: cat.fullWhite
+        }
     ];
     const sliders = [
         {

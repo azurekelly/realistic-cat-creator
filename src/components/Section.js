@@ -16,6 +16,7 @@ const Section = ({title, buttons, sliders, disabled, advancedCollapsed = true}) 
                 value={button.label}
                 onClick={button.onClick}
                 disabled={button.disabled || disabled}
+                activated={button.activated}
             />
         )))}
         {sliders && (
