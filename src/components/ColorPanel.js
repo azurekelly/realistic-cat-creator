@@ -5,9 +5,11 @@ import SilverSection from './sections/SilverSection';
 import PointSection from './sections/PointSection';
 import WhiteSection from './sections/WhiteSection';
 import EyeColorSection from './sections/EyeColorSection';
+import ButtonControls from './ButtonControls';
 
 const ColorPanel = () => (
     <>
+        <ButtonControls />
         <FurColorSection />
         <MarkingTypeSection />
         <PatternSection />

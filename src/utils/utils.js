@@ -20,3 +20,22 @@ export const pickRandomInt = (min, max) => Math.floor(Math.random() * ((max + 1)
 export const pickRandomFromArray = arr => arr[pickRandomInt(0, arr.length - 1)];
 
 export const pickRandomBool = () => (pickRandomInt(0, 1) === 1);
+
+// TODO fix weighting so things like white aren't getting picked constantly
+export const generateRandomCat = () => ({
+    baseColor: pickRandomFromArray(['black', 'chocolate', 'cinnamon', 'red']),
+    dilute: pickRandomBool(),
+    fullWhite: pickRandomBool(),
+    redness: pickRandomInt(0, 16),
+    dilution: pickRandomInt(0, 16),
+    tabby: pickRandomBool(),
+    tortie: pickRandomBool(),
+    pattern: pickRandomFromArray(['mackerel', 'classic', 'spotted', 'ticked', 'rosette', 'marble', 'shaded', 'tipped']),
+    patternContrast: pickRandomInt(0, 16),
+    silver: pickRandomBool(),
+    whiteSpread: pickRandomInt(0, 16),
+    point: pickRandomFromArray(['standard', 'point', 'mink', 'sepia']),
+    eyePigment: pickRandomInt(0, 16),
+    blueRefraction: pickRandomInt(0, 16),
+    eyeColorBase: pickRandomFromArray(['standard', 'aqua', 'blue'])
+});
