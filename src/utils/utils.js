@@ -13,3 +13,10 @@ export const mapTraitToRange = (value, targetMin, targetMax) => {
     const targetRange = targetMax - targetMin;
     return value / traitRange * targetRange + targetMin;
 };
+
+// between min and max both inclusive
+export const pickRandomInt = (min, max) => Math.floor(Math.random() * ((max + 1) - min) + min);
+
+export const pickRandomFromArray = arr => arr[pickRandomInt(0, arr.length - 1)];
+
+export const pickRandomBool = () => (pickRandomInt(0, 1) === 1);
