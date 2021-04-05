@@ -78,4 +78,12 @@ describe('Section component', () => {
         fireEvent.change(screen.getByRole('slider', {name: 'Slider test'}), {target: {value: 0}});
         expect(handleChange).toHaveBeenCalled();
     });
+
+    it('value applies to both slider and number input', () => {
+        // onChange added to avoid warnings about uncontrolled components
+        const sliders = [{label: 'Slider test', value: 2, onChange: () => {}}];
+        render(<Section title={'Section test'} sliders={sliders} />);
+        expect(screen.getByRole('slider', {name: 'Slider test'})).toHaveValue('2');
+        expect(screen.getByRole('spinbutton', {name: 'Slider test number'})).toHaveValue(2);
+    });
 });
