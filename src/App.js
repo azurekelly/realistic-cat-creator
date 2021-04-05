@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import ColorPanel from './components/ColorPanel';
-import CatDisplay from './components/CatDisplay';
+import CatDisplayContainer from './components/CatDisplayContainer';
 
 const Container = styled.div`
     height: 100%;
@@ -28,7 +28,7 @@ const App = () => (
             <ColorPanel />
         </SidePane>
         <MainPane>
-            <CatDisplay />
+            <CatDisplayContainer />
         </MainPane>
     </Container>
 );
