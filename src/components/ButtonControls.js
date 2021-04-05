@@ -1,7 +1,7 @@
 import {useDispatch} from 'react-redux';
 import {updateCat} from '../state/catState';
 import {initialState} from '../state/store';
-import {generateRandomCat} from '../utils/utils';
+import {generateRandomCat} from '../utils/randomizerUtils';
 import Button from './Button';
 
 const ButtonControls = () => {

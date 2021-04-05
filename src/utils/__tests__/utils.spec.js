@@ -1,4 +1,4 @@
-import {loadImage, mapTraitToRange, pickRandomInt, pickRandomFromArray, pickRandomBool} from '../utils';
+import {loadImage, mapTraitToRange} from '../utils';
 
 describe('loadImage', () => {
     it('resolves promise when image loads', () => {
@@ -54,51 +54,5 @@ describe('mapTraitToRange', () => {
 
     it('works with non-zero minimum values', () => {
         expect(mapTraitToRange(8, 20, 30)).toBe(25);
-    });
-});
-
-describe('pickRandomInt', () => {
-    it('can pick min value', () => {
-        jest.spyOn(global.Math, 'random').mockReturnValue(0.01);
-        expect(pickRandomInt(5, 10)).toBe(5);
-    });
-
-    it('can pick max value', () => {
-        jest.spyOn(global.Math, 'random').mockReturnValue(0.9999);
-        expect(pickRandomInt(0, 4)).toBe(4);
-    });
-
-    it('can pick mid-range value', () => {
-        jest.spyOn(global.Math, 'random').mockReturnValue(0.5);
-        expect(pickRandomInt(8, 12)).toBe(10);
-    });
-});
-
-describe('pickRandomFromArray', () => {
-    it('can pick first item', () => {
-        jest.spyOn(global.Math, 'random').mockReturnValue(0.9999);
-        expect(pickRandomFromArray(['a', 'b', 'c', 'd', 'e'])).toBe('e');
-    });
-
-    it('can pick last item', () => {
-        jest.spyOn(global.Math, 'random').mockReturnValue(0.01);
-        expect(pickRandomFromArray(['a', 'b', 'c', 'd', 'e'])).toBe('a');
-    });
-
-    it('can pick a middle item', () => {
-        jest.spyOn(global.Math, 'random').mockReturnValue(0.5);
-        expect(pickRandomFromArray(['a', 'b', 'c', 'd', 'e'])).toBe('c');
-    });
-});
-
-describe('pickRandomBool', () => {
-    it('can pick true', () => {
-        jest.spyOn(global.Math, 'random').mockReturnValue(0.9999);
-        expect(pickRandomBool()).toBe(true);
-    });
-
-    it('can pick false', () => {
-        jest.spyOn(global.Math, 'random').mockReturnValue(0.01);
-        expect(pickRandomBool()).toBe(false);
     });
 });
