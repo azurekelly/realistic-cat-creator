@@ -9,16 +9,33 @@ describe('Section component', () => {
         expect(screen.getByRole('heading', {name: 'Section test'})).toBeInTheDocument();
     });
 
-    it('displays buttons specified in props', () => {
-        const buttons = [{label: 'Button test'}];
-        render(<Section title='Section test' buttons={buttons} />);
-        expect(screen.getByRole('button', {name: 'Button test'})).toBeInTheDocument();
+    it('displays button groups specified in props', () => {
+        const buttonGroups = [
+            {
+                title: 'Button group 1',
+                buttons: [{label: 'Group 1 button'}]
+            },
+            {
+                title: 'Button group 2',
+                buttons: [{label: 'Group 2 button 1'}, {label: 'Group 2 button 2'}]
+            }
+        ];
+        render(<Section title='Section test' buttonGroups={buttonGroups} />);
+        expect(screen.getByRole('heading', {name: 'Button group 1'})).toBeInTheDocument();
+        expect(screen.getByRole('heading', {name: 'Button group 2'})).toBeInTheDocument();
+        expect(screen.getAllByRole('button')).toHaveLength(3);
+    });
+
+    it('allows button group to not have heading', () => {
+        const buttonGroup = [{buttons: [{label: 'Button test'}]}];
+        render(<Section title={'Section test'} buttonGroups={buttonGroup} />);
+        expect(screen.getAllByRole('heading')).toHaveLength(1); // only section heading
     });
 
     it('calls callback onClick specified by button object in props', () => {
         const handleClick = jest.fn();
-        const buttons = [{label: 'Button test', onClick: handleClick}];
-        render(<Section title='Section test' buttons={buttons} />);
+        const buttonGroup = [{buttons: [{label: 'Button test', onClick: handleClick}]}];
+        render(<Section title='Section test' buttonGroups={buttonGroup} />);
         userEvent.click(screen.getByRole('button', {name: 'Button test'}));
         expect(handleClick).toHaveBeenCalled();
     });

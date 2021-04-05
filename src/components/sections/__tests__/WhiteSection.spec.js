@@ -27,6 +27,11 @@ describe('WhiteSection component', () => {
         expect(screen.getByRole('heading', {name: 'White markings'})).toBeInTheDocument();
     });
 
+    it('has button section header', () => {
+        renderComponent();
+        expect(screen.getByRole('heading', {name: 'Presets'})).toBeInTheDocument();
+    });
+
     it.each(buttons)('has functioning %s button', (buttonName, expectedState) => {
         const {store} = renderComponent({cat: {whiteSpread: 1}});
         userEvent.click(screen.getByRole('button', {name: buttonName}));

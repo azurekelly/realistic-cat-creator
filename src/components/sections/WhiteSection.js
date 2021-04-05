@@ -5,13 +5,16 @@ import {catSelector, updateCat} from '../../state/catState';
 const WhiteSection = () => {
     const dispatch = useDispatch();
     const cat = useSelector(catSelector);
-    const buttons = [ // PRESETS
-        // preset values are temporary right now, will be modified once art is complete
-        {label: 'None', onClick: () => dispatch(updateCat({whiteSpread: 0})), activated: cat.whiteSpread === 0},
-        {label: 'Low', onClick: () => dispatch(updateCat({whiteSpread: 4})), activated: cat.whiteSpread === 4},
-        {label: 'Medium', onClick: () => dispatch(updateCat({whiteSpread: 8})), activated: cat.whiteSpread === 8},
-        {label: 'High', onClick: () => dispatch(updateCat({whiteSpread: 12})), activated: cat.whiteSpread === 12}
-    ];
+    const buttonGroup = [{
+        title: 'Presets',
+        buttons: [
+            // preset values are temporary right now, will be modified once art is complete
+            {label: 'None', onClick: () => dispatch(updateCat({whiteSpread: 0})), activated: cat.whiteSpread === 0},
+            {label: 'Low', onClick: () => dispatch(updateCat({whiteSpread: 4})), activated: cat.whiteSpread === 4},
+            {label: 'Medium', onClick: () => dispatch(updateCat({whiteSpread: 8})), activated: cat.whiteSpread === 8},
+            {label: 'High', onClick: () => dispatch(updateCat({whiteSpread: 12})), activated: cat.whiteSpread === 12}
+        ]
+    }];
     const sliders = [
         {
             label: 'Spread',
@@ -20,7 +23,7 @@ const WhiteSection = () => {
         }
     ];
 
-    return <Section title='White markings' buttons={buttons} sliders={sliders} disabled={cat.fullWhite} />;
+    return <Section title='White markings' buttonGroups={buttonGroup} sliders={sliders} disabled={cat.fullWhite} />;
 };
 
 export default WhiteSection;
