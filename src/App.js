@@ -19,6 +19,7 @@ const SidePane = styled.div`
 
 const MainPane = styled.div`
     flex-basis: 65%;
+    max-width: 65%;
 `;
 
 const App = () => (

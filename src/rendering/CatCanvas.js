@@ -24,9 +24,6 @@ class CatCanvas {
         this.canvas = canvas;
         this.context = canvas.getContext('2d');
         this.onLoad = onLoad;
-        this.width = canvas.width;
-        this.height = canvas.height;
-        this.buffer = new BufferCanvas(canvas.width, canvas.height);
         this.loaded = false;
 
         this.loadImages();
@@ -82,15 +79,17 @@ class CatCanvas {
     }
 
     drawCat(cat) {
-        this.context.clearRect(0, 0, this.width, this.height);
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
         if(this.loaded) {
+            // new buffer is created for every render to ensure it's the current size of the canvas
+            const buffer = new BufferCanvas(this.canvas.width, this.canvas.height);
             const layers = this.getLayerList(cat);
 
             for(const layer of layers) {
                 if(layer.shouldRender) {
                     // if the color and/or mask aren't defined on the layer, the function should behave the same as if they were not passed at all
-                    this.buffer.drawImage(layer.image, layer.color, layer.mask);
-                    this.context.drawImage(this.buffer.canvas, 0, 0);
+                    buffer.drawImage(layer.image, layer.color, layer.mask);
+                    this.context.drawImage(buffer.canvas, 0, 0);
                 }
             }
         }
