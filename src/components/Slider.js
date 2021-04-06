@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const StyledContainer = styled.div`
-    padding-bottom: 1em;
+    margin-bottom: 1em;
 `;
 
 const StyledLabel = styled.span`
@@ -16,6 +16,7 @@ const FlexContainer = styled.div`
 const StyledSlider = styled.input.attrs({type: 'range'})`
     flex-basis: 90%;
     margin-right: 1em;
+
 `;
 
 const StyledInput = styled.input.attrs({type: 'number', required: true})`
