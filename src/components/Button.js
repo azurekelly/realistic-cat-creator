@@ -1,13 +1,33 @@
 import styled from 'styled-components';
+import {colors} from '../theme';
 
-const Button = styled.input.attrs({
-    type: 'button'
-})`
+const Button = styled.input.attrs({type: 'button'})`
     padding: 0.5rem 1rem;
     margin-right: 0.5rem;
     margin-bottom: 0.5rem;
     font-family: 'Montserrat', sans-serif;
-    background-color: ${props => (props.activated ? 'lightblue' : '')};
+    font-size: 1rem;
+    background-color: ${props => (props.activated ? colors.primary : colors.white)};
+    color: ${props => (props.activated ? colors.white : colors.primary)};
+    border-radius: 0.25em;
+    border: 2px solid ${colors.primary};
+    cursor: pointer;
+    flex-basis: 23%;
+
+    &:hover {
+        background-color: ${props => (props.activated ? colors.primaryHover : colors.primaryInvertedHover)};
+        color: ${props => (props.activated ? colors.white : colors.primary)};
+    }
+    &:active {
+        background-color: ${props => (props.activated ? colors.primaryPressed : colors.primary)};
+        color: ${colors.white};
+    }
+    &:disabled {
+        background-color: ${props => (props.activated ? colors.primaryDisabled : colors.white)};
+        border-color: ${colors.primaryDisabled};
+        color: ${props => (props.activated ? colors.white : colors.primaryDisabled)};
+        cursor: default;
+    }
 `;
 
 export default Button;
