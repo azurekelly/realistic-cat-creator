@@ -14,9 +14,10 @@ const Button = styled.input.attrs({type: 'button'})`
     cursor: pointer;
     flex-basis: 23%;
 
-    &:hover {
+    &:hover, &:focus {
         background-color: ${props => (props.activated ? colors.primaryHover : colors.primaryInvertedHover)};
-        color: ${props => (props.activated ? colors.white : colors.primary)};
+        color: ${props => (props.activated ? colors.white : colors.primaryPressed)}; // darker text color to allow better readability with hover bg color
+        outline-color: ${colors.primary}; // override the default black outline
     }
     &:active {
         background-color: ${props => (props.activated ? colors.primaryPressed : colors.primary)};
