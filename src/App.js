@@ -2,10 +2,11 @@ import styled from 'styled-components';
 import ColorPanel from './components/ColorPanel';
 import CatDisplayContainer from './components/CatDisplayContainer';
 import CatDescription from './components/CatDescription';
+import {colors} from './theme';
 
 const Container = styled.div`
     height: 100%;
-    background-color: #f3f3f3;
+    background-color: ${colors.lightGray};
     display: flex;
     flex-direction: row;
 `;
@@ -30,6 +31,7 @@ const DisplayWrapper = styled.div`
     flex-basis: 90%;
     overflow-y: hidden; // required by the display container to prevent a scaling bug with flexbox
     overflow-x: hidden;
+    padding: 1rem 4rem 0;
 `;
 
 const App = () => (
