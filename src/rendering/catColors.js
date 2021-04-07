@@ -7,7 +7,7 @@ export const CONSTANTS = {
     chocolateIntensity: 400,
     cinnamonIntensity: 225,
     redMinIntensity: 225,
-    redMaxIntensity: 400,
+    redMaxIntensity: 375,
     dilutionMin: 0.3,
     dilutionMax: 0.65,
     agoutiFactor: 0.15,
@@ -19,6 +19,8 @@ export const CONSTANTS = {
     // contrast values have been altered to temporarily fix this until the problem is solved
     silverContrastMin: 0.55,
     silverContrastMax: 0.85,
+    widebandContrastMin: 0.77,
+    widebandContrastMax: 0.85,
     pointLightFactor: 0.05, // similar enough for black and red to be the same factors
     pointBlackLightFactor: 0.025,
     minkLightFactor: 0.16,
@@ -104,6 +106,9 @@ export const getAgoutiSettings = (cat, pointLight = false) => {
 const blendAgouti = (baseSettings, cat, pointLight = false) => {
     const baseRgb = simulateMelanin(...baseSettings);
     const agoutiRgb = simulateMelanin(...getAgoutiSettings(cat, pointLight));
+    if(cat.pattern === 'shaded' || cat.pattern === 'tipped') {
+        return rgbToHex(blendAlpha(baseRgb, agoutiRgb, mapTraitToRange(cat.patternContrast, CONSTANTS.widebandContrastMin, CONSTANTS.widebandContrastMax)));
+    }
     if(cat.silver) {
         return rgbToHex(blendAlpha(baseRgb, agoutiRgb, mapTraitToRange(cat.patternContrast, CONSTANTS.silverContrastMin, CONSTANTS.silverContrastMax)));
     }
