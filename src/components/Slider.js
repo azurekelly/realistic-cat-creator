@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {colors, font} from '../theme';
 
 const StyledContainer = styled.div`
     margin-bottom: 1em;
@@ -14,13 +15,24 @@ const FlexContainer = styled.div`
 `;
 
 const StyledSlider = styled.input.attrs({type: 'range'})`
-    flex-basis: 90%;
     margin-right: 1em;
-
+    flex-grow: 1;
 `;
 
 const StyledInput = styled.input.attrs({type: 'number', required: true})`
-    flex-basis: 10%;
+    min-width: 0;
+    width: 4rem;
+    padding: 0.5rem;
+    padding-left: 1rem;
+    border-radius: 0.25rem;
+    background: ${colors.lightGray};
+    border: none;
+    font-family: ${font};
+    color: ${colors.darkGay};
+
+    &:focus-visible {
+        outline-color: ${colors.primary};
+    }
 `;
 
 const Slider = ({label, ...props}) => (
