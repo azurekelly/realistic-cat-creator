@@ -137,7 +137,7 @@ export const getBlackTopColor = (cat, pointLight = false) => {
 // TODO make this a dynamic simulation instead of hard coded colors
 export const getEyeColor = cat => {
     const eyeColors = {
-        copper: '#914b1a',
+        copper: '#a54f12',
         orange: '#d87831',
         yellow: '#e3a652',
         hazel: '#a09541',
