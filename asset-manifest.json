@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/realistic-cat-creator/static/css/main.50e75b60.chunk.css",
-    "main.js": "/realistic-cat-creator/static/js/main.1153fb05.chunk.js",
-    "main.js.map": "/realistic-cat-creator/static/js/main.1153fb05.chunk.js.map",
+    "main.js": "/realistic-cat-creator/static/js/main.89a82a65.chunk.js",
+    "main.js.map": "/realistic-cat-creator/static/js/main.89a82a65.chunk.js.map",
     "runtime-main.js": "/realistic-cat-creator/static/js/runtime-main.00906e92.js",
     "runtime-main.js.map": "/realistic-cat-creator/static/js/runtime-main.00906e92.js.map",
     "static/js/2.c31fe904.chunk.js": "/realistic-cat-creator/static/js/2.c31fe904.chunk.js",
@@ -32,6 +32,6 @@
     "static/js/runtime-main.00906e92.js",
     "static/js/2.c31fe904.chunk.js",
     "static/css/main.50e75b60.chunk.css",
-    "static/js/main.1153fb05.chunk.js"
+    "static/js/main.89a82a65.chunk.js"
   ]
 }
