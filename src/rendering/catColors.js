@@ -133,3 +133,29 @@ export const getBlackTopColor = (cat, pointLight = false) => {
     }
     return rgbToHex(simulateMelanin(...getBlackSettings(cat, pointLight)));
 };
+
+// TODO make this a dynamic simulation instead of hard coded colors
+export const getEyeColor = cat => {
+    const eyeColors = {
+        copper: '#914b1a',
+        orange: '#d87831',
+        yellow: '#e3a652',
+        hazel: '#a09541',
+        green: '#79b45d',
+        aqua: '#88bea3',
+        blue: '#5eaae3'
+    };
+
+    if(cat.fullWhite && cat.blueEyes) { // full white always takes presedence over everything
+        return eyeColors.blue;
+    }
+    else if(cat.point === 'mink' && !cat.fullWhite) {
+        return eyeColors.aqua;
+    }
+    else if((cat.blueEyes && cat.whiteSpread >= 8) || (!cat.fullWhite && cat.point === 'point')) {
+        return eyeColors.blue;
+    }
+    else {
+        return eyeColors[cat.eyeColor];
+    }
+};

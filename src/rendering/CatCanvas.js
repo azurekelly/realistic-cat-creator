@@ -107,8 +107,8 @@ class CatCanvas {
                 },
                 { // eyes
                     shouldRender: true,
-                    image: this.images.eyes
-                    // color: '#fff',
+                    image: this.images.eyes,
+                    color: colors.getEyeColor(cat)
                 },
                 { // lineart
                     shouldRender: true,
@@ -188,8 +188,8 @@ class CatCanvas {
             },
             { // eyes
                 shouldRender: true,
-                image: this.images.eyes
-                // TODO add dynamic eye color
+                image: this.images.eyes,
+                color: colors.getEyeColor(cat)
             },
             { // lineart
                 shouldRender: true,

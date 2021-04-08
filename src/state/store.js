@@ -16,9 +16,11 @@ export const initialState = {
         silver: false,
         whiteSpread: 0,
         point: 'standard',
-        eyePigment: 8,
-        blueRefraction: 8,
-        eyeColorBase: 'standard' // can be standard, aqua, or blue
+        blueEyes: false,
+        eyeColor: 'hazel'
+        // eyePigment: 8,
+        // blueRefraction: 8,
+        // eyeColorBase: 'standard' // can be standard, aqua, or blue
     }
 };
 

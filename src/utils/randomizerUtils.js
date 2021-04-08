@@ -54,7 +54,9 @@ export const generateRandomCat = () => ({
         ['mink', 1],
         ['sepia', 1]
     ]),
-    eyePigment: pickRandomInt(0, 16),
-    blueRefraction: pickRandomInt(0, 16),
-    eyeColorBase: pickRandomFromArray(['standard', 'aqua', 'blue'])
+    blueEyes: pickRandomWeighted([[true, 1], [false, 2]]),
+    eyeColor: pickRandomFromArray(['copper', 'orange', 'yellow', 'hazel', 'green'])
+    // eyePigment: pickRandomInt(0, 16),
+    // blueRefraction: pickRandomInt(0, 16),
+    // eyeColorBase: pickRandomFromArray(['standard', 'aqua', 'blue'])
 });
