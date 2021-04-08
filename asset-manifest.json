@@ -1,0 +1,37 @@
+{
+  "files": {
+    "main.css": "/realistic-cat-creator/static/css/main.50e75b60.chunk.css",
+    "main.js": "/realistic-cat-creator/static/js/main.1153fb05.chunk.js",
+    "main.js.map": "/realistic-cat-creator/static/js/main.1153fb05.chunk.js.map",
+    "runtime-main.js": "/realistic-cat-creator/static/js/runtime-main.00906e92.js",
+    "runtime-main.js.map": "/realistic-cat-creator/static/js/runtime-main.00906e92.js.map",
+    "static/js/2.c31fe904.chunk.js": "/realistic-cat-creator/static/js/2.c31fe904.chunk.js",
+    "static/js/2.c31fe904.chunk.js.map": "/realistic-cat-creator/static/js/2.c31fe904.chunk.js.map",
+    "index.html": "/realistic-cat-creator/index.html",
+    "static/css/main.50e75b60.chunk.css.map": "/realistic-cat-creator/static/css/main.50e75b60.chunk.css.map",
+    "static/js/2.c31fe904.chunk.js.LICENSE.txt": "/realistic-cat-creator/static/js/2.c31fe904.chunk.js.LICENSE.txt",
+    "static/media/base.7499ffa2.png": "/realistic-cat-creator/static/media/base.7499ffa2.png",
+    "static/media/classic.d12232dd.png": "/realistic-cat-creator/static/media/classic.d12232dd.png",
+    "static/media/eyes.a379f03e.png": "/realistic-cat-creator/static/media/eyes.a379f03e.png",
+    "static/media/lineart.158e22c8.png": "/realistic-cat-creator/static/media/lineart.158e22c8.png",
+    "static/media/mackerel.74d199da.png": "/realistic-cat-creator/static/media/mackerel.74d199da.png",
+    "static/media/marble.00e32cf6.png": "/realistic-cat-creator/static/media/marble.00e32cf6.png",
+    "static/media/point.48391cb8.png": "/realistic-cat-creator/static/media/point.48391cb8.png",
+    "static/media/rosette.2cc59172.png": "/realistic-cat-creator/static/media/rosette.2cc59172.png",
+    "static/media/shaded.acf76727.png": "/realistic-cat-creator/static/media/shaded.acf76727.png",
+    "static/media/smoke.3a11e2ec.png": "/realistic-cat-creator/static/media/smoke.3a11e2ec.png",
+    "static/media/spotted.498973c0.png": "/realistic-cat-creator/static/media/spotted.498973c0.png",
+    "static/media/ticked.b1ca9245.png": "/realistic-cat-creator/static/media/ticked.b1ca9245.png",
+    "static/media/tipped.ba325036.png": "/realistic-cat-creator/static/media/tipped.ba325036.png",
+    "static/media/tortie.ae553ae9.png": "/realistic-cat-creator/static/media/tortie.ae553ae9.png",
+    "static/media/white-high.d27ac0e7.png": "/realistic-cat-creator/static/media/white-high.d27ac0e7.png",
+    "static/media/white-low.9919cf96.png": "/realistic-cat-creator/static/media/white-low.9919cf96.png",
+    "static/media/white-medium.55ebc711.png": "/realistic-cat-creator/static/media/white-medium.55ebc711.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.00906e92.js",
+    "static/js/2.c31fe904.chunk.js",
+    "static/css/main.50e75b60.chunk.css",
+    "static/js/main.1153fb05.chunk.js"
+  ]
+}
